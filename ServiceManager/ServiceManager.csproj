@@ -72,20 +72,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ServiceSelectionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ServiceSelectionForm.Designer.cs">
-      <DependentUpon>ServiceSelectionForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ServiceSettingWindow.xaml.cs">
       <DependentUpon>ServiceSettingWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SettingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SettingForm.Designer.cs">
-      <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -121,12 +109,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServiceSelectionForm.resx">
-      <DependentUpon>ServiceSelectionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingForm.resx">
-      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

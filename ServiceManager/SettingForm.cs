@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ServiceManager
+{
+    public partial class SettingForm : Form
+    {
+        public SettingForm()
+        {
+            InitializeComponent();
+            MessageBox.Show(MainWindow.ServicesData.Last().MachineName);
+        }
+
+        private void SettingForm_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

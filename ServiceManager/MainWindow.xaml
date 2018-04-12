@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="300"
+        Title="Service Manager" Height="500" Width="300"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
@@ -71,7 +71,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Grid.Column="0" Grid.Row="0" Margin="10,5,0,0" VerticalAlignment="Center">Service Manager</TextBlock>
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Grid.Column="0" Grid.Row="0" Margin="10,5,0,0" VerticalAlignment="Center" FontSize="18">Service Manager</TextBlock>
         <Button Name="refreshBtn" Grid.Row="0" Grid.Column="1" Style="{DynamicResource MaterialDesignToolForegroundButton}" Height="30" Width="30" Foreground="MediumBlue" VerticalAlignment="Center" HorizontalAlignment="Center" Click="refreshBtn_Click">
             <materialDesign:PackIcon Kind="Autorenew" Height="24" Width="24" />
         </Button>

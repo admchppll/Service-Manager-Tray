@@ -9,22 +9,6 @@ namespace ServiceClassLibrary
 {
     public static class ServiceStatusConverter
     {
-        #region Enum Values
-        /// <summary>
-        /// Gets the <see cref="ServiceStatus"/> values from it's enum.
-        /// </summary>
-        /// <value>
-        /// The service status values.
-        /// </value>
-        public static IEnumerable<byte> ServiceStatusValues => Enum.GetValues(typeof(ServiceStatus)).Cast<byte>();
-        /// <summary>
-        /// Gets the <see cref="ServiceControllerStatus"/> values.
-        /// </summary>
-        /// <value>
-        /// The service controller status values.
-        /// </value>
-        public static IEnumerable<byte> ServiceControllerStatusValues => Enum.GetValues(typeof(ServiceControllerStatus)).Cast<byte>();
-        #endregion
         #region To Service Status Methods
         /// <summary>
         /// Converts a <see cref="ServiceControllerStatus"/> to a <see cref="ServiceStatus"/>
@@ -35,11 +19,17 @@ namespace ServiceClassLibrary
         public static ServiceStatus FromServiceControllerStatus(ServiceControllerStatus status)
         {
             byte originalValue = (byte)status;
+            ServiceStatus output;
 
-            if (!ServiceStatusValues.Any(s => s.Equals(originalValue)))
+            try {
+                output = (ServiceStatus)originalValue;
+            }
+            catch (Exception)
+            {
                 throw new ServiceStatusConversionException("Value out of bounds. The value selected does not exist in ServiceStatus");
+            }
 
-            return (ServiceStatus)originalValue;
+            return output;
         }
         #endregion
         #region From Service Status Methods
@@ -52,11 +42,18 @@ namespace ServiceClassLibrary
         public static ServiceControllerStatus ToServiceControllerStatus(ServiceStatus status)
         {
             byte originalValue = (byte)status;
+            ServiceControllerStatus output;
 
-            if (!ServiceControllerStatusValues.Any(s => s.Equals(originalValue)))
+            try
+            {
+                output = (ServiceControllerStatus)originalValue;
+            }
+            catch (Exception)
+            {
                 throw new ServiceStatusConversionException("Value out of bounds. The value selected does not exist in ServiceControllerStatus");
+            }
 
-            return (ServiceControllerStatus)originalValue;
+            return output;
         }
         #endregion
         /// <summary>

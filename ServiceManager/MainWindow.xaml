@@ -54,7 +54,7 @@
                         <TextBlock FontSize="14" Text="{Binding Path=Name}" Width="270" TextWrapping="Wrap"/>
                         <TextBlock FontSize="10" Text="{Binding Path=Description}" Width="270" TextWrapping="Wrap"/>
                         <TextBlock FontSize="10" Text="{Binding Path=MachineName}" Width="270"/>
-                        <Button Content="Toggle" Name="toggleBtn" Click="toggleBtn_Click"></Button>
+                        <!--<Button Content="Toggle" Name="toggleBtn" Click="toggleBtn_Click"></Button>-->
                     </StackPanel>
                 </Grid>
             </materialDesign:Card>

@@ -37,7 +37,7 @@ namespace ServiceManager
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Service selected = (Service)((ContentControl)sender).Content;
-            System.Windows.MessageBox.Show(selected.MachineName);
+            selected.Toggle();
         }
 
         private void settingBtn_Click(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ namespace ServiceManager
         private void toggleBtn_Click(object sender, RoutedEventArgs e)
         {
             Service selected = (Service)((ContentControl)sender).DataContext;
-            System.Windows.MessageBox.Show(selected.GetStatus().ToString());
+            selected.Toggle();
         }
 
         private void refreshBtn_Click(object sender, RoutedEventArgs e)

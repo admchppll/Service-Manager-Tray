@@ -19,7 +19,7 @@ namespace ServiceClassLibrary
         /// Gets or sets the name.
         /// </summary>
         /// <value>
-        /// A user friendly name for the serivce
+        /// A user friendly name for the service
         /// </value>
         public string Name { get; set; }
 
@@ -76,7 +76,7 @@ namespace ServiceClassLibrary
                 {
                     return ServiceStatus.NoAccess;
                 }
-                //If any other exceptions occur, we dont know what happened.
+                //If any other exceptions occur, we don't know what happened.
                 catch (Exception)
                 {
                     return ServiceStatus.Unknown;
@@ -217,6 +217,7 @@ namespace ServiceClassLibrary
 
         }
 
+        #region TestCode
         //TODO: Remove when completing dev
         /// <summary>
         /// Return a list of sample the services for design use.
@@ -240,6 +241,7 @@ namespace ServiceClassLibrary
 
             return result;
         }
+        #endregion
 
         #region Service Controls
         /// <summary>

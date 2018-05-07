@@ -9,6 +9,7 @@ using System.Management;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ServiceClassLibrary
 {
@@ -244,7 +245,7 @@ namespace ServiceClassLibrary
         /// <summary>
         /// Starts this service.
         /// </summary>
-        /// <returns>The updated status</returns>
+        /// <returns>The current status</returns>
         public ServiceStatus Start()
         {
             ServiceStatus currentStatus = GetStatus();
@@ -287,7 +288,7 @@ namespace ServiceClassLibrary
         /// <summary>
         /// Stops this service.
         /// </summary>
-        /// <returns>The updated status.</returns>
+        /// <returns>The current status</returns>
         public ServiceStatus Stop()
         {
             ServiceStatus currentStatus = GetStatus();
@@ -318,7 +319,7 @@ namespace ServiceClassLibrary
                 {
                     return ServiceStatus.NoAccess;
                 }
-                //If any other exceptions occur, we dont know what happened.
+                //If any other exceptions occur, we don't know what happened.
                 catch (Exception)
                 {
                     return ServiceStatus.Unknown;
@@ -327,13 +328,52 @@ namespace ServiceClassLibrary
             }
         }
 
+        /// <summary>
+        /// Toggle the Service
+        /// </summary>
+        /// <returns>The current status</returns>
+        /// <remarks>If the service is currently pending other actions, no action will be taken.</remarks>
         public ServiceStatus Toggle()
         {
+            ServiceStatus[] CanToggle = {
+                ServiceStatus.Running,
+                ServiceStatus.Stopped,
+                ServiceStatus.Paused
+            };
+
+            ServiceStatus[] PendingAction = {
+                ServiceStatus.StartPending,
+                ServiceStatus.StopPending,
+                ServiceStatus.ContinuePending,
+                ServiceStatus.PausePending
+            };
+
             ServiceStatus currentStatus = GetStatus();
 
-            using (ServiceController sc = new ServiceController(MachineName))
+            if (CanToggle.Contains(currentStatus))
             {
-                return Status = ServiceStatusConverter.FromServiceControllerStatus(sc.Status);
+                switch (currentStatus) {
+                    case ServiceStatus.Running:
+                        Stop();
+                        break;
+                    case ServiceStatus.Paused:
+                    case ServiceStatus.Stopped:
+                        Start();
+                        break;
+                }
+
+                //Start/Stop operation will have updated the Service Status
+                return Status;
+            }
+            else if (PendingAction.Contains(currentStatus))
+            {
+                MessageBox.Show($"This service already had pending action!\nCurrent Status: {currentStatus}");
+                return currentStatus;
+            }
+            else
+            {
+                MessageBox.Show($"Cannot toggle this service!\nCurrent Status: {currentStatus}");
+                return currentStatus;
             }
         }
         #endregion

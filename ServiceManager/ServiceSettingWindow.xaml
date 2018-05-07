@@ -142,7 +142,6 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <Button Content="Save" Grid.Column="1" HorizontalAlignment="Right" Margin="10,0,90,0" Grid.Row="3" VerticalAlignment="Center" Width="75"/>
-        <Button Content="Cancel" Grid.Column="1" HorizontalAlignment="Right" Margin="10,0,10,0" Grid.Row="3" VerticalAlignment="Center" Width="75"/>
+        <Button Content="Close" Grid.Column="1" HorizontalAlignment="Right" Margin="10,0,10,0" Grid.Row="3" VerticalAlignment="Center" Width="75" Name="closeBtn" Click="closeBtn_Click"/>
     </Grid>
 </Window>

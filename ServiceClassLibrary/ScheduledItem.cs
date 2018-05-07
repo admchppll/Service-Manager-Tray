@@ -4,21 +4,22 @@ using System.ServiceProcess;
 
 namespace ServiceClassLibrary
 {
-    public class OperationalPeriod
+    public class ScheduledItem
     {
-        public ServiceControllerStatus DesiredStatus;
+        public ServiceControllerStatus StartStatus;
+        public ServiceControllerStatus EndStatus;
         public LocalTime Start;
         public LocalTime End;
         public LocalDate RuleStart;
         public LocalDate RuleEnd;
         public IsoDayOfWeek[] Days;
 
-        public ServiceControllerStatus Execute(string serviceName) {
+        public static ServiceControllerStatus Execute(string serviceName, ServiceControllerStatus desiredStatus) {
             using (ServiceController sc = new ServiceController(serviceName)) {
-                if(sc.Status == this.DesiredStatus)
+                if(sc.Status == desiredStatus)
                     return sc.Status;
 
-                switch (this.DesiredStatus)
+                switch (desiredStatus)
                 {
                     case ServiceControllerStatus.Running:
                         if(sc.Status == ServiceControllerStatus.Paused)

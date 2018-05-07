@@ -49,19 +49,6 @@ namespace ServiceClassLibrary
         public ServiceStatus Status { get; set; }
 
         /// <summary>
-        /// Gets or sets the selected value.
-        /// </summary>
-        public bool Selected { get; set; }
-
-        /// <summary>
-        /// Gets or sets the operational periods.
-        /// </summary>
-        /// <value>
-        /// The operational periods we want the service to obey
-        /// </value>
-        public List<OperationalPeriod> OperationalPeriods { get; set; }
-
-        /// <summary>
         /// Gets the default configuration file location.
         /// </summary>
         /// <returns>The absolute path of the configuration file in the system</returns>
@@ -336,6 +323,16 @@ namespace ServiceClassLibrary
                 {
                     return ServiceStatus.Unknown;
                 }
+                return Status = ServiceStatusConverter.FromServiceControllerStatus(sc.Status);
+            }
+        }
+
+        public ServiceStatus Toggle()
+        {
+            ServiceStatus currentStatus = GetStatus();
+
+            using (ServiceController sc = new ServiceController(MachineName))
+            {
                 return Status = ServiceStatusConverter.FromServiceControllerStatus(sc.Status);
             }
         }

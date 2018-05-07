@@ -34,8 +34,8 @@ namespace ServiceManager
 
         private void serviceFilter_KeyUp(object sender, KeyEventArgs e)
         {
+            //Search case insensitive
             string input = ((TextBox)sender).Text.ToLowerInvariant();
-            //MessageBox.Show(input.Text);
 
             //if there is no text to filter by return all services
             if (string.IsNullOrWhiteSpace(input))
@@ -48,6 +48,11 @@ namespace ServiceManager
                     .Where(s => s.Name.ToLowerInvariant().Contains(input) == true
                         || s.MachineName.ToLowerInvariant().Contains(input) == true);
             }
+        }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

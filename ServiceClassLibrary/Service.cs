@@ -270,9 +270,11 @@ namespace ServiceClassLibrary
                     }
                     sc.WaitForStatus(ServiceControllerStatus.Running, new TimeSpan(0, 0, 30));
                 }
-                catch (InvalidOperationException)
+                catch (InvalidOperationException ex)
                 {
-                    return ServiceStatus.NotExists;
+                    return ex.InnerException.Message == "Access is denied"
+                        ? ServiceStatus.NoAccess
+                        : ServiceStatus.NotExists;
                 }
                 catch (System.ComponentModel.Win32Exception)
                 {
@@ -313,9 +315,11 @@ namespace ServiceClassLibrary
                         return ServiceStatus.NotStop;
                     }
                 }
-                catch (InvalidOperationException)
+                catch (InvalidOperationException ex)
                 {
-                    return ServiceStatus.NotExists;
+                    return ex.InnerException.Message == "Access is denied"
+                        ? ServiceStatus.NoAccess
+                        : ServiceStatus.NotExists;
                 }
                 catch (System.ComponentModel.Win32Exception)
                 {
@@ -351,6 +355,7 @@ namespace ServiceClassLibrary
             };
 
             ServiceStatus currentStatus = GetStatus();
+            MessageBox.Show($"Current Status:{currentStatus.ToString()}");
 
             if (CanToggle.Contains(currentStatus))
             {

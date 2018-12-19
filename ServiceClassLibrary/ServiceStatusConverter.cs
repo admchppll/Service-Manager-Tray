@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceClassLibrary
 {
     public static class ServiceStatusConverter
     {
         #region To Service Status Methods
+
         /// <summary>
         /// Converts a <see cref="ServiceControllerStatus"/> to a <see cref="ServiceStatus"/>
         /// </summary>
@@ -18,11 +15,12 @@ namespace ServiceClassLibrary
         /// <exception cref="ServiceClassLibrary.ServiceStatusConverter.ServiceStatusConversionException">Value out of bounds. The value selected does not exist in ServiceStatus</exception>
         public static ServiceStatus FromServiceControllerStatus(ServiceControllerStatus status)
         {
-            byte originalValue = (byte)status;
+            byte originalValue = (byte) status;
             ServiceStatus output;
 
-            try {
-                output = (ServiceStatus)originalValue;
+            try
+            {
+                output = (ServiceStatus) originalValue;
             }
             catch (Exception)
             {
@@ -31,8 +29,11 @@ namespace ServiceClassLibrary
 
             return output;
         }
-        #endregion
+
+        #endregion To Service Status Methods
+
         #region From Service Status Methods
+
         /// <summary>
         /// Converts a <see cref="ServiceStatus"/> to a <see cref="ServiceControllerStatus"/>
         /// </summary>
@@ -41,12 +42,12 @@ namespace ServiceClassLibrary
         /// <exception cref="ServiceClassLibrary.ServiceStatusConverter.ServiceStatusConversionException">Value out of bounds. The value selected does not exist in ServiceStatus</exception>
         public static ServiceControllerStatus ToServiceControllerStatus(ServiceStatus status)
         {
-            byte originalValue = (byte)status;
+            byte originalValue = (byte) status;
             ServiceControllerStatus output;
 
             try
             {
-                output = (ServiceControllerStatus)originalValue;
+                output = (ServiceControllerStatus) originalValue;
             }
             catch (Exception)
             {
@@ -55,20 +56,28 @@ namespace ServiceClassLibrary
 
             return output;
         }
-        #endregion
+
+        #endregion From Service Status Methods
+
         /// <summary>
         /// Exception to be thrown when conversion isn't possible
         /// </summary>
         /// <seealso cref="System.Exception" />
         public class ServiceStatusConversionException : Exception
         {
-            public ServiceStatusConversionException() { }
+            public ServiceStatusConversionException()
+            {
+            }
+
             public ServiceStatusConversionException(string message)
                 : base(message)
-            { }
+            {
+            }
+
             public ServiceStatusConversionException(string message, Exception innerException)
                 : base(message, innerException)
-            { }
+            {
+            }
         }
     }
 }

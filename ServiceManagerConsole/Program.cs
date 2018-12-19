@@ -1,21 +1,21 @@
-﻿using System;
-using ServiceClassLibrary;
-using System.IO;
+﻿using ServiceClassLibrary;
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ServiceManagerConsole
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            string config = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"ServiceManager","config.json");
+            string config = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ServiceManager", "config.json");
 
             /*
             //Loop operational periods and execute
             List<Service> Services = new List<Service>();
-            
+
             //service 1
             Service service1 = new Service();
             service1.Name = "lfsvc";
@@ -64,7 +64,6 @@ namespace ServiceManagerConsole
                 serialized = (List<Service>)serializer.Deserialize(file, typeof(List<Service>));
             }*/
 
-
             /*int count = 0;
             foreach (Service service in Services)
             {
@@ -108,7 +107,6 @@ namespace ServiceManagerConsole
                     scTemp.WaitForStatus(ServiceControllerStatus.Running);
                     Console.WriteLine(scTemp.Status);
                     scTemp.Stop();
-
                 }
             }*/
 

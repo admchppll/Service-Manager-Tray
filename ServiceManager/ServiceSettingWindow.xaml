@@ -13,7 +13,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" >
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Window.Resources>
         <DataTemplate x:Key="serviceTemplate">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
@@ -25,7 +25,7 @@
                     <ColumnDefinition Width="50"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Rectangle Width="10" VerticalAlignment="Stretch" Grid.Column="0" Margin="0,0,0,0">
                     <Rectangle.Style>
@@ -35,33 +35,33 @@
                             </Style.Setters>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Path=Item1.Status}" Value="4">
-                                    <Setter Property="Fill" Value="ForestGreen"/>
+                                    <Setter Property="Fill" Value="ForestGreen" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=Item1.Status}" Value="1">
-                                    <Setter Property="Fill" Value="IndianRed"/>
+                                    <Setter Property="Fill" Value="IndianRed" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=Item1.Status}" Value="7">
-                                    <Setter Property="Fill" Value="RoyalBlue"/>
+                                    <Setter Property="Fill" Value="RoyalBlue" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=Item1.Status}" Value="10">
-                                    <Setter Property="Fill" Value="Transparent"/>
+                                    <Setter Property="Fill" Value="Transparent" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=Item1.Status}" Value="11">
-                                    <Setter Property="Fill" Value="DarkOrange"/>
+                                    <Setter Property="Fill" Value="DarkOrange" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Rectangle.Style>
                 </Rectangle>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="{Binding Path=Item1.Name}" IsChecked="{Binding Item2, Mode=OneTime}"/>
+                    <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="{Binding Path=Item1.Name}" IsChecked="{Binding Item2, Mode=OneTime}" />
                 </StackPanel>
-                <TextBlock FontSize="12" Text="{Binding Path=Item1.Name}" Grid.Column="2" TextWrapping="Wrap" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
-                <TextBlock FontSize="12" Text="{Binding Path=Item1.Description}" Grid.Column="3" TextWrapping="Wrap" Padding="5" VerticalAlignment="Center"/>
+                <TextBlock FontSize="12" Text="{Binding Path=Item1.Name}" Grid.Column="2" TextWrapping="Wrap" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" />
+                <TextBlock FontSize="12" Text="{Binding Path=Item1.Description}" Grid.Column="3" TextWrapping="Wrap" Padding="5" VerticalAlignment="Center" />
                 <!--<Button Name="serviceSettingBtn" Grid.Column="4" Style="{DynamicResource MaterialDesignToolButton}" Height="30" Width="30" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <materialDesign:PackIcon Kind="DotsHorizontal" Height="24" Width="24" />
                 </Button>-->
-                <TextBlock FontSize="12" Text="{Binding Path=Item1.MachineName}" Grid.Column="4" TextWrapping="Wrap" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
+                <TextBlock FontSize="12" Text="{Binding Path=Item1.MachineName}" Grid.Column="4" TextWrapping="Wrap" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" />
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -71,13 +71,13 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="20" />
+            <RowDefinition />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" FontSize="18" Margin="5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"><Run Text="Select services to monitor"/></TextBlock>
-        <TextBox Name="serviceFilter" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Filter By Service Name" materialDesign:HintAssist.IsFloating="False" materialDesign:HintAssist.HintOpacity="0.5" Text="" Width="200" FontSize="14"  Margin="5" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right" VerticalAlignment="Bottom" TextAlignment="Left" KeyUp="serviceFilter_KeyUp"/>
+        <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" FontSize="18" Margin="5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"><Run Text="Select services to monitor" /></TextBlock>
+        <TextBox Name="serviceFilter" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Filter By Service Name" materialDesign:HintAssist.IsFloating="False" materialDesign:HintAssist.HintOpacity="0.5" Text="" Width="200" FontSize="14"  Margin="5" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right" VerticalAlignment="Bottom" TextAlignment="Left" KeyUp="serviceFilter_KeyUp" />
         <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"></ColumnDefinition>
@@ -87,7 +87,7 @@
                 <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="1" Text="Watch" Margin="5,0,5,0" TextAlignment="Center"></TextBlock>
             <TextBlock Grid.Column="2" Text="Name" Margin="5,0,5,0" TextAlignment="Center"></TextBlock>
@@ -97,7 +97,7 @@
         <ListBox Name="servicesList" ItemTemplate="{StaticResource serviceTemplate}" Margin="0,0,0,0" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
-                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Padding" Value="0" />
                     <Setter Property="Background" Value="Transparent" />
                     <Setter Property="Template">
                         <Setter.Value>
@@ -118,22 +118,22 @@
                                 <ControlTemplate.Triggers>
                                     <MultiTrigger>
                                         <MultiTrigger.Conditions>
-                                            <Condition Property="Selector.IsSelectionActive" Value="False"/>
-                                            <Condition Property="Selector.IsSelected" Value="True"/>
+                                            <Condition Property="Selector.IsSelectionActive" Value="False" />
+                                            <Condition Property="Selector.IsSelected" Value="True" />
                                         </MultiTrigger.Conditions>
-                                        <Setter Property="Panel.Background" TargetName="Bd" Value="Transparent"/>
-                                        <Setter Property="Border.BorderBrush" TargetName="Bd" Value="Transparent"/>
+                                        <Setter Property="Panel.Background" TargetName="Bd" Value="Transparent" />
+                                        <Setter Property="Border.BorderBrush" TargetName="Bd" Value="Transparent" />
                                     </MultiTrigger>
                                     <MultiTrigger>
                                         <MultiTrigger.Conditions>
-                                            <Condition Property="Selector.IsSelectionActive" Value="True"/>
-                                            <Condition Property="Selector.IsSelected" Value="True"/>
+                                            <Condition Property="Selector.IsSelectionActive" Value="True" />
+                                            <Condition Property="Selector.IsSelected" Value="True" />
                                         </MultiTrigger.Conditions>
-                                        <Setter Property="Panel.Background" TargetName="Bd" Value="Transparent"/>
+                                        <Setter Property="Panel.Background" TargetName="Bd" Value="Transparent" />
                                     </MultiTrigger>
                                     <Trigger Property="UIElement.IsMouseOver" Value="True">
-                                        <Setter Property="Panel.Background" TargetName="Bd" Value="#EFEFEF"/>
-                                        <Setter Property="TextElement.Foreground" TargetName="Bd" Value="Black"/>
+                                        <Setter Property="Panel.Background" TargetName="Bd" Value="#EFEFEF" />
+                                        <Setter Property="TextElement.Foreground" TargetName="Bd" Value="Black" />
                                     </Trigger>
                                     <Trigger Property="UIElement.IsEnabled" Value="False">
                                     </Trigger>
@@ -144,6 +144,6 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <Button Content="Close" Grid.Column="1" HorizontalAlignment="Right" Margin="10,0,10,0" Grid.Row="3" VerticalAlignment="Center" Width="75" Name="closeBtn" Click="closeBtn_Click"/>
+        <Button Content="Close" Grid.Column="1" HorizontalAlignment="Right" Margin="10,0,10,0" Grid.Row="3" VerticalAlignment="Center" Width="75" Name="closeBtn" Click="closeBtn_Click" />
     </Grid>
 </Window>

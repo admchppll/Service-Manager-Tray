@@ -1,11 +1,9 @@
 ﻿using ServiceClassLibrary;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Forms;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Linq;
 
 namespace ServiceManager
 {
@@ -16,7 +14,10 @@ namespace ServiceManager
     {
         private static ObservableCollection<Service> servicesData;
 
-        public static ObservableCollection<Service> ServicesData { get => servicesData; set => servicesData = value; }
+        public static ObservableCollection<Service> ServicesData
+        {
+            get => servicesData; set => servicesData = value;
+        }
 
         public MainWindow()
         {
@@ -36,7 +37,7 @@ namespace ServiceManager
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Service selected = (Service)((ContentControl)sender).Content;
+            Service selected = (Service) ((ContentControl) sender).Content;
             selected.Toggle();
         }
 
@@ -56,7 +57,7 @@ namespace ServiceManager
 
         private void toggleBtn_Click(object sender, RoutedEventArgs e)
         {
-            Service selected = (Service)((ContentControl)sender).DataContext;
+            Service selected = (Service) ((ContentControl) sender).DataContext;
             selected.Toggle();
             RefreshServiceList();
         }

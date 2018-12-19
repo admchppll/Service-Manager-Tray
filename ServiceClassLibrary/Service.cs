@@ -6,7 +6,6 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Management;
-using System.Reflection;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,7 +20,10 @@ namespace ServiceClassLibrary
         /// <value>
         /// A user friendly name for the service
         /// </value>
-        public string Name { get; set; }
+        public string Name
+        {
+            get; set;
+        }
 
         /// <summary>
         /// Gets or sets the description.
@@ -29,7 +31,10 @@ namespace ServiceClassLibrary
         /// <value>
         /// The description of the service
         /// </value>
-        public string Description { get; set; }
+        public string Description
+        {
+            get; set;
+        }
 
         /// <summary>
         /// Gets or sets the name of the machine.
@@ -37,7 +42,10 @@ namespace ServiceClassLibrary
         /// <value>
         /// The actual name of the service on the current machine.
         /// </value>
-        public string MachineName { get; set; }
+        public string MachineName
+        {
+            get; set;
+        }
 
         /// <summary>
         /// Gets or sets the status.
@@ -47,13 +55,17 @@ namespace ServiceClassLibrary
         /// </value>
         /// <remarks>We don't store this in the configuration file.</remarks>
         [JsonIgnore]
-        public ServiceStatus Status { get; set; }
+        public ServiceStatus Status
+        {
+            get; set;
+        }
 
         /// <summary>
         /// Gets the default configuration file location.
         /// </summary>
         /// <returns>The absolute path of the configuration file in the system</returns>
-        public static string ConfigFileLocation() {
+        public static string ConfigFileLocation()
+        {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ServiceManager", "config.json").ToString();
         }
 
@@ -62,11 +74,13 @@ namespace ServiceClassLibrary
         /// </summary>
         /// <param name="Name">The name of the service.</param>
         /// <returns>The current <see cref="ServiceStatus"/></returns>
-        public static ServiceStatus GetStatus(string Name) {
-            using (ServiceController sc = new ServiceController(Name)) {
+        public static ServiceStatus GetStatus(string Name)
+        {
+            using (ServiceController sc = new ServiceController(Name))
+            {
                 try
                 {
-                    return (ServiceStatus)(byte)sc.Status;
+                    return (ServiceStatus) (byte) sc.Status;
                 }
                 catch (InvalidOperationException)
                 {
@@ -88,7 +102,8 @@ namespace ServiceClassLibrary
         /// Gets the status of the current service.
         /// </summary>
         /// <returns>The current <see cref="ServiceStatus"/></returns>
-        public ServiceStatus GetStatus() {
+        public ServiceStatus GetStatus()
+        {
             return Status = GetStatus(this.MachineName);
         }
 
@@ -96,7 +111,8 @@ namespace ServiceClassLibrary
         /// Gets the status of the current service.
         /// </summary>
         /// <returns>The current <see cref="ServiceStatus"/></returns>
-        public async Task<ServiceStatus> GetStatusAsync() {
+        public async Task<ServiceStatus> GetStatusAsync()
+        {
             return GetStatus();
         }
 
@@ -105,8 +121,10 @@ namespace ServiceClassLibrary
         /// </summary>
         /// <param name="serviceName">Name of the service.</param>
         /// <returns>The description and set the <see cref="Description"/> field.</returns>
-        public static string GetDescription(string serviceName) {
-            using (ManagementObject wmiService = new ManagementObject("Win32_Service.Name='" + serviceName + "'")) {
+        public static string GetDescription(string serviceName)
+        {
+            using (ManagementObject wmiService = new ManagementObject("Win32_Service.Name='" + serviceName + "'"))
+            {
                 wmiService.Get();
                 return wmiService["Description"] == null ? "" : wmiService["Description"].ToString();
             }
@@ -116,7 +134,8 @@ namespace ServiceClassLibrary
         /// Gets the description of the current service from the system.
         /// </summary>
         /// <returns>The description</returns>
-        public string GetDescription() {
+        public string GetDescription()
+        {
             return Description = Status != ServiceStatus.NotExists
                         ? GetDescription(MachineName)
                         : null;
@@ -143,8 +162,9 @@ namespace ServiceClassLibrary
         /// Updates the status of all services asynchronously
         /// </summary>
         /// <param name="serviceList">The <see cref="ObservableCollection{T}"/> of services to update</param>
-        public static void UpdateStatus(ref ObservableCollection<Service> serviceList) {
-            foreach(Service serv in serviceList)
+        public static void UpdateStatus(ref ObservableCollection<Service> serviceList)
+        {
+            foreach (Service serv in serviceList)
             {
                 serv.GetStatus();
             }
@@ -164,7 +184,8 @@ namespace ServiceClassLibrary
         /// </summary>
         /// <param name="servicesFile">The services configuration to import from file.</param>
         /// <returns>A list of services. Or an empty list if no file exists.</returns>
-        public static ObservableCollection<Service> DeserializeFromFile(string servicesFile) {
+        public static ObservableCollection<Service> DeserializeFromFile(string servicesFile)
+        {
             ObservableCollection<Service> result = new ObservableCollection<Service>();
 
             //If config file doesn't exist
@@ -175,7 +196,7 @@ namespace ServiceClassLibrary
             using (StreamReader file = File.OpenText(servicesFile))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                result = (ObservableCollection<Service>)serializer.Deserialize(file, typeof(ObservableCollection<Service>));
+                result = (ObservableCollection<Service>) serializer.Deserialize(file, typeof(ObservableCollection<Service>));
             }
 
             return result;
@@ -213,11 +234,12 @@ namespace ServiceClassLibrary
         /// </summary>
         /// <param name="allServices">The collection of services to set the Selected flag on</param>
         /// <param name="selectedServices">The services to mark in the other collection</param>
-        public static void SetSelectedFlags(ref ObservableCollection<Service> allServices, ref ObservableCollection<Service> selectedServices) {
-
+        public static void SetSelectedFlags(ref ObservableCollection<Service> allServices, ref ObservableCollection<Service> selectedServices)
+        {
         }
 
         #region TestCode
+
         //TODO: Remove when completing dev
         /// <summary>
         /// Return a list of sample the services for design use.
@@ -241,9 +263,11 @@ namespace ServiceClassLibrary
 
             return result;
         }
-        #endregion
+
+        #endregion TestCode
 
         #region Service Controls
+
         /// <summary>
         /// Starts this service.
         /// </summary>
@@ -359,10 +383,12 @@ namespace ServiceClassLibrary
 
             if (CanToggle.Contains(currentStatus))
             {
-                switch (currentStatus) {
+                switch (currentStatus)
+                {
                     case ServiceStatus.Running:
                         Stop();
                         break;
+
                     case ServiceStatus.Paused:
                     case ServiceStatus.Stopped:
                         Start();
@@ -383,6 +409,7 @@ namespace ServiceClassLibrary
                 return currentStatus;
             }
         }
-        #endregion
+
+        #endregion Service Controls
     }
 }

@@ -12,7 +12,7 @@
         TextElement.FontSize="14"
         WindowStyle="None"
         ResizeMode="NoResize"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" >
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Window.Resources>
         <DataTemplate x:Key="opTemplate">
             <materialDesign:Card>
@@ -22,7 +22,7 @@
                         <ColumnDefinition Width="290"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Rectangle Width="10" VerticalAlignment="Stretch" Grid.Column="0" Margin="0,0,0,0">
                         <Rectangle.Style>
@@ -32,28 +32,28 @@
                                 </Style.Setters>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Path=Status}" Value="4">
-                                        <Setter Property="Fill" Value="ForestGreen"/>
+                                        <Setter Property="Fill" Value="ForestGreen" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Path=Status}" Value="1">
-                                        <Setter Property="Fill" Value="IndianRed"/>
+                                        <Setter Property="Fill" Value="IndianRed" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Path=Status}" Value="7">
-                                        <Setter Property="Fill" Value="RoyalBlue"/>
+                                        <Setter Property="Fill" Value="RoyalBlue" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Path=Status}" Value="10">
-                                        <Setter Property="Fill" Value="Transparent"/>
+                                        <Setter Property="Fill" Value="Transparent" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Path=Status}" Value="11">
-                                        <Setter Property="Fill" Value="DarkOrange"/>
+                                        <Setter Property="Fill" Value="DarkOrange" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Rectangle.Style>
                     </Rectangle>
                     <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <TextBlock FontSize="14" Text="{Binding Path=Name}" Width="270" TextWrapping="Wrap"/>
-                        <TextBlock FontSize="10" Text="{Binding Path=Description}" Width="270" TextWrapping="Wrap"/>
-                        <TextBlock FontSize="10" Text="{Binding Path=MachineName}" Width="270"/>
+                        <TextBlock FontSize="14" Text="{Binding Path=Name}" Width="270" TextWrapping="Wrap" />
+                        <TextBlock FontSize="10" Text="{Binding Path=Description}" Width="270" TextWrapping="Wrap" />
+                        <TextBlock FontSize="10" Text="{Binding Path=MachineName}" Width="270" />
                         <!--<Button Content="Toggle" Name="toggleBtn" Click="toggleBtn_Click"></Button>-->
                     </StackPanel>
                 </Grid>
@@ -68,8 +68,8 @@
             <ColumnDefinition Width="35"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
+            <RowDefinition Height="50" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" Grid.Column="0" Grid.Row="0" Margin="10,5,0,0" VerticalAlignment="Center" FontSize="18">Service Manager</TextBlock>
         <Button Name="refreshBtn" Grid.Row="0" Grid.Column="1" Style="{DynamicResource MaterialDesignToolForegroundButton}" Height="30" Width="30" Foreground="MediumBlue" VerticalAlignment="Center" HorizontalAlignment="Center" Click="refreshBtn_Click">
@@ -85,7 +85,7 @@
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
-                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Padding" Value="0" />
                     <Setter Property="Background" Value="Transparent" />
                     <Setter Property="Template">
                         <Setter.Value>
@@ -101,28 +101,28 @@
                                            ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
                                            HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
                                            VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
-                                           SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" /> 
+                                           SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <MultiTrigger>
                                         <MultiTrigger.Conditions>
-                                            <Condition Property="Selector.IsSelectionActive" Value="False"/>
-                                            <Condition Property="Selector.IsSelected" Value="True"/>
+                                            <Condition Property="Selector.IsSelectionActive" Value="False" />
+                                            <Condition Property="Selector.IsSelected" Value="True" />
                                         </MultiTrigger.Conditions>
-                                        <Setter Property="Panel.Background" TargetName="Bd" Value="Transparent"/>
-                                        <Setter Property="Border.BorderBrush" TargetName="Bd" Value="Transparent"/>
+                                        <Setter Property="Panel.Background" TargetName="Bd" Value="Transparent" />
+                                        <Setter Property="Border.BorderBrush" TargetName="Bd" Value="Transparent" />
                                     </MultiTrigger>
                                     <MultiTrigger>
                                         <MultiTrigger.Conditions>
-                                            <Condition Property="Selector.IsSelectionActive" Value="True"/>
-                                            <Condition Property="Selector.IsSelected" Value="True"/>
+                                            <Condition Property="Selector.IsSelectionActive" Value="True" />
+                                            <Condition Property="Selector.IsSelected" Value="True" />
                                         </MultiTrigger.Conditions>
-                                        <Setter Property="Panel.Background" TargetName="Bd" Value="LightGray"/>
-                                        <!--<Setter Property="TextElement.Foreground" TargetName="Bd" Value="Yellow"/>-->
+                                        <Setter Property="Panel.Background" TargetName="Bd" Value="LightGray" />
+                                        <!--<Setter Property="TextElement.Foreground" TargetName="Bd" Value="Yellow" />-->
                                     </MultiTrigger>
                                     <Trigger Property="UIElement.IsMouseOver" Value="True">
-                                        <Setter Property="Panel.Background" TargetName="Bd" Value="LightGray"/>
-                                        <Setter Property="TextElement.Foreground" TargetName="Bd" Value="Black"/>
+                                        <Setter Property="Panel.Background" TargetName="Bd" Value="LightGray" />
+                                        <Setter Property="TextElement.Foreground" TargetName="Bd" Value="Black" />
                                     </Trigger>
                                     <Trigger Property="UIElement.IsEnabled" Value="False">
                                     </Trigger>

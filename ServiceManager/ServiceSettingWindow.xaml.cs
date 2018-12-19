@@ -1,18 +1,10 @@
 ﻿using ServiceClassLibrary;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ServiceManager
 {
@@ -21,8 +13,12 @@ namespace ServiceManager
     /// </summary>
     public partial class ServiceSettingWindow : Window
     {
-        private static ObservableCollection<Tuple<Service,bool>> allServicesData;
-        public static ObservableCollection<Tuple<Service, bool>> AllServicesData { get => allServicesData; set => allServicesData = value; }
+        private static ObservableCollection<Tuple<Service, bool>> allServicesData;
+
+        public static ObservableCollection<Tuple<Service, bool>> AllServicesData
+        {
+            get => allServicesData; set => allServicesData = value;
+        }
 
         public ServiceSettingWindow()
         {
@@ -34,15 +30,18 @@ namespace ServiceManager
         /// <summary>
         /// Initialize list of all services
         /// </summary>
-        private void InitializeServicesList() {
+        private void InitializeServicesList()
+        {
             AllServicesData = new ObservableCollection<Tuple<Service, bool>>();
 
-            foreach (Service service in Service.GetAllServices()) {
+            foreach (Service service in Service.GetAllServices())
+            {
                 AllServicesData.Add(Tuple.Create(service, IsMonitored(service.MachineName)));
             }
         }
 
-        private bool IsMonitored(string machineName) {
+        private bool IsMonitored(string machineName)
+        {
             return MainWindow.ServicesData.Any(s => s.MachineName == machineName);
         }
 
@@ -54,7 +53,7 @@ namespace ServiceManager
         private void serviceFilter_KeyUp(object sender, KeyEventArgs e)
         {
             //Search case insensitive
-            string input = ((TextBox)sender).Text.ToLowerInvariant();
+            string input = ((TextBox) sender).Text.ToLowerInvariant();
 
             //if there is no text to filter by return all services
             if (string.IsNullOrWhiteSpace(input))
@@ -76,12 +75,10 @@ namespace ServiceManager
 
         private void ServiceChecked(object sender, RoutedEventArgs e)
         {
-            
         }
 
         private void ServiceUnchecked(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

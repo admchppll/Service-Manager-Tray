@@ -58,9 +58,15 @@ namespace ServiceManager
         {
             Service selected = (Service)((ContentControl)sender).DataContext;
             selected.Toggle();
+            RefreshServiceList();
         }
 
         private void refreshBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshServiceList();
+        }
+
+        public void RefreshServiceList()
         {
             Service.UpdateStatus(ref servicesData);
             servicesList.ItemsSource = ServicesData;

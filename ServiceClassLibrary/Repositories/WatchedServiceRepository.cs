@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ServiceManagement.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

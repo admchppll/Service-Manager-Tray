@@ -1,4 +1,4 @@
-﻿namespace ServiceManagement.Core
+﻿namespace ServiceManagement.Core.Models
 {
     /// <summary>
     /// Indicates the current state of the service.

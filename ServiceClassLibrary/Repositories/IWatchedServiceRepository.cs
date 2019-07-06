@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ServiceManagement.Core.Models;
+using System.Collections.Generic;
 
 namespace ServiceManagement.Core.Repositories
 {

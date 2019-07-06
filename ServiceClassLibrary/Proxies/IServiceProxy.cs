@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using ServiceManagement.Core.Models;
+using System.Threading.Tasks;
 
 namespace ServiceManagement.Core.Proxies
 {

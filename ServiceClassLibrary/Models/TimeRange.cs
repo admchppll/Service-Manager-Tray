@@ -1,6 +1,6 @@
 ﻿using NodaTime;
 
-namespace ServiceManagement.Core
+namespace ServiceManagement.Core.Models
 {
     internal class TimeRange
     {

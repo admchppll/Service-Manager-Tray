@@ -70,13 +70,13 @@
     <Compile Include="Services\IStatusService.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
     <Compile Include="Services\StatusService.cs" />
-    <Compile Include="ScheduledItem.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="Models\ScheduledItem.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceStatus.cs" />
-    <Compile Include="ServiceStatusConverter.cs" />
+    <Compile Include="Models\ServiceStatus.cs" />
+    <Compile Include="Models\ServiceStatusConverter.cs" />
     <Compile Include="Startup\UnityBootstrapper.cs" />
-    <Compile Include="TimeRange.cs" />
+    <Compile Include="Models\TimeRange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

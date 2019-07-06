@@ -10,7 +10,7 @@ using System.ServiceProcess;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ServiceManagement.Core
+namespace ServiceManagement.Core.Models
 {
     public class Service
     {

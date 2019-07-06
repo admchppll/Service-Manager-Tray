@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ServiceManagement.Core.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Management;
 using System.Threading.Tasks;

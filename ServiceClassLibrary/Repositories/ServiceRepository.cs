@@ -1,4 +1,5 @@
-﻿using ServiceManagement.Core.Services;
+﻿using ServiceManagement.Core.Models;
+using ServiceManagement.Core.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;

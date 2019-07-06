@@ -2,7 +2,7 @@
 using System;
 using System.ServiceProcess;
 
-namespace ServiceManagement.Core
+namespace ServiceManagement.Core.Models
 {
     public class ScheduledItem
     {

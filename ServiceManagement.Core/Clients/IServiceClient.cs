@@ -1,9 +1,9 @@
 ﻿using ServiceManagement.Core.Models;
 using System.Threading.Tasks;
 
-namespace ServiceManagement.Core.Proxies
+namespace ServiceManagement.Core.Clients
 {
-    public interface IServiceProxy
+    public interface IServiceClient
     {
         Task<ServiceStatus> StartService(Service service);
 

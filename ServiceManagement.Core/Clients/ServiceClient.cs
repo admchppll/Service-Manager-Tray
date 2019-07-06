@@ -6,15 +6,15 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 
-namespace ServiceManagement.Core.Proxies
+namespace ServiceManagement.Core.Clients
 {
-    public class ServiceProxy : IServiceProxy
+    public class ServiceClient : IServiceClient
     {
         private const string AccessDeniedText = "Access is denied";
 
         private readonly IStatusService _statusService;
 
-        public ServiceProxy(IStatusService statusService)
+        public ServiceClient(IStatusService statusService)
         {
             _statusService = statusService;
         }

@@ -1,4 +1,4 @@
-﻿using ServiceManagement.Core.Proxies;
+﻿using ServiceManagement.Core.Clients;
 using ServiceManagement.Core.Repositories;
 using ServiceManagement.Core.Services;
 using System;
@@ -18,7 +18,7 @@ namespace ServiceManagement.Core.Startup
         {
             Container = container;
 
-            container.RegisterType<IServiceProxy, ServiceProxy>(new TransientLifetimeManager());
+            container.RegisterType<IServiceClient, ServiceClient>(new TransientLifetimeManager());
             container.RegisterType<IServiceRepository, ServiceRepository>(new ContainerControlledLifetimeManager());
             container.RegisterType<IWatchedServiceRepository, WatchedServiceRepository>(new ContainerControlledLifetimeManager());
             container.RegisterType<IDescriptionService, DescriptionService>(new TransientLifetimeManager());

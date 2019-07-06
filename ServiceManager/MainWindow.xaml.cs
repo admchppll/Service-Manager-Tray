@@ -1,4 +1,6 @@
-﻿using ServiceClassLibrary;
+﻿using ServiceManagement.Core.Models;
+using ServiceManagement.Core.Repositories;
+using ServiceManagement.Core.Startup;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -12,6 +14,7 @@ namespace ServiceManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly IServiceRepository _serviceRepository;
         private static ObservableCollection<Service> servicesData;
 
         public static ObservableCollection<Service> ServicesData
@@ -19,33 +22,36 @@ namespace ServiceManager
             get => servicesData; set => servicesData = value;
         }
 
-        public MainWindow()
+        public MainWindow(IServiceRepository serviceRepository)
         {
+            _serviceRepository = serviceRepository;
+
+            ShowInTaskbar = false;
+
             InitializeComponent();
 
             //Place Bottom Right of Screen
             var desktopWorkingArea = SystemParameters.WorkArea;
-            this.Left = desktopWorkingArea.Right - this.Width;
-            this.Top = desktopWorkingArea.Bottom - this.Height;
+            Left = desktopWorkingArea.Right - Width;
+            Top = desktopWorkingArea.Bottom - Height;
+            Topmost = true;
 
-            //Set data
-            //ServicesData = Service.DeserializeFromFile();
-            ServicesData = Service.GetAllServices();
-            Service.UpdateStatus(ref servicesData);
+            ServicesData = new ObservableCollection<Service>(_serviceRepository.GetAllServices().Result);
+
             servicesList.ItemsSource = ServicesData;
         }
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Service selected = (Service) ((ContentControl) sender).Content;
-            selected.Toggle();
+            Service selected = (Service)((ContentControl)sender).Content;
+            //selected.Toggle();
         }
 
         private void settingBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!System.Windows.Application.Current.Windows.OfType<ServiceSettingWindow>().Any())
             {
-                ServiceSettingWindow setting = new ServiceSettingWindow();
+                var setting = (ServiceSettingWindow)UnityBootstrapper.Resolve(typeof(ServiceSettingWindow));// setting = new ServiceSettingWindow();
                 setting.Show();
             }
         }
@@ -57,8 +63,8 @@ namespace ServiceManager
 
         private void toggleBtn_Click(object sender, RoutedEventArgs e)
         {
-            Service selected = (Service) ((ContentControl) sender).DataContext;
-            selected.Toggle();
+            Service selected = (Service)((ContentControl)sender).DataContext;
+            //selected.Toggle();
             RefreshServiceList();
         }
 
@@ -69,7 +75,7 @@ namespace ServiceManager
 
         public void RefreshServiceList()
         {
-            Service.UpdateStatus(ref servicesData);
+            //Service.UpdateStatus(ref servicesData);
             servicesList.ItemsSource = ServicesData;
             servicesList.Items.Refresh();
         }

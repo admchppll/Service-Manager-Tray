@@ -1,8 +1,5 @@
-﻿using ServiceClassLibrary;
-using System;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace ServiceManagerConsole
 {
@@ -110,11 +107,11 @@ namespace ServiceManagerConsole
                 }
             }*/
 
-            ObservableCollection<Service> serviceList = Service.GetAllServices();
+            //ObservableCollection<Service> serviceList = _.GetAllServices();
             //Service.UpdateStatus(ref serviceList);
-            Task serialize = Service.SerializeToFile(serviceList);
-            Console.WriteLine(serialize.Status);
-            serialize.Wait();
+            //Task serialize = Service.SerializeToFile(serviceList);
+            //Console.WriteLine(serialize.Status);
+            //serialize.Wait();
             Console.WriteLine("Finished Serializing");
             Console.ReadKey();
         }

@@ -23,9 +23,9 @@ namespace ServiceManagement.Core.Mappers
             {
                 output = (ServiceStatus)originalValue;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new ServiceStatusMapperException("Value out of bounds. The value selected does not exist in ServiceStatus");
+                throw new ServiceStatusMapperException("Value out of bounds. The value selected does not exist in ServiceStatus", ex);
             }
 
             return output;
@@ -50,9 +50,9 @@ namespace ServiceManagement.Core.Mappers
             {
                 output = (ServiceControllerStatus)originalValue;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new ServiceStatusMapperException("Value out of bounds. The value selected does not exist in ServiceControllerStatus");
+                throw new ServiceStatusMapperException("Value out of bounds. The value selected does not exist in ServiceControllerStatus", ex);
             }
 
             return output;

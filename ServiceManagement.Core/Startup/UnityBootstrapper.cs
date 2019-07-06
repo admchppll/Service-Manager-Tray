@@ -19,8 +19,8 @@ namespace ServiceManagement.Core.Startup
             Container = container;
 
             container.RegisterType<IServiceProxy, ServiceProxy>(new TransientLifetimeManager());
-            container.RegisterType<IServiceRepository, ServiceRepository>(new TransientLifetimeManager());
-            container.RegisterType<IWatchedServiceRepository, WatchedServiceRepository>(new TransientLifetimeManager());
+            container.RegisterType<IServiceRepository, ServiceRepository>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IWatchedServiceRepository, WatchedServiceRepository>(new ContainerControlledLifetimeManager());
             container.RegisterType<IDescriptionService, DescriptionService>(new TransientLifetimeManager());
             container.RegisterType<IStatusService, StatusService>(new TransientLifetimeManager());
         }

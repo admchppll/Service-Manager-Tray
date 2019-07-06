@@ -11,6 +11,7 @@ namespace ServiceManagement.Core.Repositories
     {
         private readonly IStatusService _statusService;
         private readonly IDescriptionService _descriptionService;
+        private IEnumerable<Service> _cachedServices;
 
         public ServiceRepository(
             IStatusService statusService,
@@ -22,6 +23,22 @@ namespace ServiceManagement.Core.Repositories
 
         public async Task<ICollection<Service>> GetAllServices()
         {
+            var services = _cachedServices.Any()
+                ? await GetServicesFromCache()
+                : await GetServicesFromSystem();
+
+            return services.ToList();
+        }
+
+        private async Task<IEnumerable<Service>> GetServicesFromCache()
+        {
+            var services = await _statusService.SetStatus(_cachedServices);
+            _cachedServices = services;
+            return services;
+        }
+
+        private async Task<IEnumerable<Service>> GetServicesFromSystem()
+        {
             var services = ServiceController.GetServices()
                 .Select(service => new Service()
                 {
@@ -32,7 +49,8 @@ namespace ServiceManagement.Core.Repositories
             services = await _descriptionService.SetDescription(services);
             services = await _statusService.SetStatus(services);
 
-            return services.ToList();
+            _cachedServices = services;
+            return services;
         }
 
         public ICollection<Service> GetWatchedServices()

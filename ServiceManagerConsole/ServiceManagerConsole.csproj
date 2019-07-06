@@ -63,7 +63,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceClassLibrary\ServiceManagement.Core.csproj">
+    <ProjectReference Include="..\ServiceManagement.Core\ServiceManagement.Core.csproj">
       <Project>{70198946-bcb7-484f-9133-17718c19b27b}</Project>
       <Name>ServiceManagement.Core</Name>
     </ProjectReference>

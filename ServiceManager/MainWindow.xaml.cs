@@ -1,4 +1,5 @@
 ﻿using ServiceManagement.Core.Models;
+using ServiceManagement.Core.Repositories;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace ServiceManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly IServiceRepository _serviceRepository;
         private static ObservableCollection<Service> servicesData;
 
         public static ObservableCollection<Service> ServicesData
@@ -20,8 +22,10 @@ namespace ServiceManager
             get => servicesData; set => servicesData = value;
         }
 
-        public MainWindow()
+        public MainWindow(IServiceRepository serviceRepository)
         {
+            _serviceRepository = serviceRepository;
+
             Hide();
             var container = new System.ComponentModel.Container();
             var trayIcon = new System.Windows.Forms.NotifyIcon(container)
@@ -56,15 +60,16 @@ namespace ServiceManager
 
             //Set data
             //ServicesData = Service.DeserializeFromFile();
-            ServicesData = Service.GetAllServices();
-            Service.UpdateStatus(ref servicesData);
+            //ServicesData = Service.GetAllServices();
+            ServicesData = new ObservableCollection<Service>(_serviceRepository.GetAllServices().Result);
+            //Service.UpdateStatus(ref servicesData);
             servicesList.ItemsSource = ServicesData;
         }
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Service selected = (Service)((ContentControl)sender).Content;
-            selected.Toggle();
+            //selected.Toggle();
         }
 
         private void settingBtn_Click(object sender, RoutedEventArgs e)
@@ -84,7 +89,7 @@ namespace ServiceManager
         private void toggleBtn_Click(object sender, RoutedEventArgs e)
         {
             Service selected = (Service)((ContentControl)sender).DataContext;
-            selected.Toggle();
+            //selected.Toggle();
             RefreshServiceList();
         }
 
@@ -95,7 +100,7 @@ namespace ServiceManager
 
         public void RefreshServiceList()
         {
-            Service.UpdateStatus(ref servicesData);
+            //Service.UpdateStatus(ref servicesData);
             servicesList.ItemsSource = ServicesData;
             servicesList.Items.Refresh();
         }

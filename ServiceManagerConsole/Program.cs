@@ -2,7 +2,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace ServiceManagerConsole
 {
@@ -112,9 +111,9 @@ namespace ServiceManagerConsole
 
             ObservableCollection<Service> serviceList = Service.GetAllServices();
             //Service.UpdateStatus(ref serviceList);
-            Task serialize = Service.SerializeToFile(serviceList);
-            Console.WriteLine(serialize.Status);
-            serialize.Wait();
+            //Task serialize = Service.SerializeToFile(serviceList);
+            //Console.WriteLine(serialize.Status);
+            //serialize.Wait();
             Console.WriteLine("Finished Serializing");
             Console.ReadKey();
         }

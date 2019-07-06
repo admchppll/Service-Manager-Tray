@@ -1,5 +1,6 @@
 ﻿using ServiceManagement.Core.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ServiceManagement.Core.Repositories
 {
@@ -9,7 +10,7 @@ namespace ServiceManagement.Core.Repositories
 
         Service FindService();
 
-        ICollection<Service> GetAllServices();
+        Task<ICollection<Service>> GetAllServices();
 
         ICollection<Service> GetWatchedServices();
     }

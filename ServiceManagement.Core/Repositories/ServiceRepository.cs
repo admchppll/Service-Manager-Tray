@@ -3,6 +3,7 @@ using ServiceManagement.Core.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
+using System.Threading.Tasks;
 
 namespace ServiceManagement.Core.Repositories
 {
@@ -19,19 +20,19 @@ namespace ServiceManagement.Core.Repositories
             _descriptionService = descriptionService;
         }
 
-        public ICollection<Service> GetAllServices()
+        public async Task<ICollection<Service>> GetAllServices()
         {
-            var services = (ICollection<Service>)ServiceController.GetServices()
+            var services = ServiceController.GetServices()
                 .Select(service => new Service()
                 {
                     Name = service.DisplayName,
                     MachineName = service.ServiceName
                 });
 
-            _descriptionService.SetDescription(services);
-            _statusService.SetStatus(services);
+            services = await _descriptionService.SetDescription(services);
+            services = await _statusService.SetStatus(services);
 
-            return services;
+            return services.ToList();
         }
 
         public ICollection<Service> GetWatchedServices()

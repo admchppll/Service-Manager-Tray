@@ -1,4 +1,5 @@
 ﻿using ServiceManagement.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management;
@@ -12,8 +13,18 @@ namespace ServiceManagement.Core.Services
         {
             using (ManagementObject wmiService = new ManagementObject($"Win32_Service.Name='{serviceName}'"))
             {
-                wmiService.Get();
-                return await Task.FromResult(wmiService["Description"] == null ? "" : wmiService["Description"].ToString());
+                try
+                {
+                    wmiService.Get();
+                    var description = wmiService["Description"] == null ? "" : wmiService["Description"].ToString();
+                    return await Task.FromResult(description);
+                }
+                catch (Exception)
+                {
+                    //TODO: Add logging here so exceptions are not lost
+                    //TODO: Add specific catch for not found
+                    return string.Empty;
+                }
             }
         }
 

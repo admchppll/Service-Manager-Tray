@@ -1,5 +1,6 @@
 ﻿using ServiceManagement.Core.Models;
 using ServiceManagement.Core.Repositories;
+using ServiceManagement.Core.Startup;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -50,7 +51,7 @@ namespace ServiceManager
         {
             if (!System.Windows.Application.Current.Windows.OfType<ServiceSettingWindow>().Any())
             {
-                ServiceSettingWindow setting = new ServiceSettingWindow();
+                var setting = (ServiceSettingWindow)UnityBootstrapper.Resolve(typeof(ServiceSettingWindow));// setting = new ServiceSettingWindow();
                 setting.Show();
             }
         }

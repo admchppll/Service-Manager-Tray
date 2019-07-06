@@ -1,6 +1,4 @@
-﻿using ServiceManagement.Core.Models;
-using System;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.IO;
 
 namespace ServiceManagerConsole
@@ -109,7 +107,7 @@ namespace ServiceManagerConsole
                 }
             }*/
 
-            ObservableCollection<Service> serviceList = Service.GetAllServices();
+            //ObservableCollection<Service> serviceList = _.GetAllServices();
             //Service.UpdateStatus(ref serviceList);
             //Task serialize = Service.SerializeToFile(serviceList);
             //Console.WriteLine(serialize.Status);

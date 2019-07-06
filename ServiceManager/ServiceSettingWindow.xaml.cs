@@ -1,4 +1,5 @@
 ﻿using ServiceManagement.Core.Models;
+using ServiceManagement.Core.Repositories;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace ServiceManager
     /// </summary>
     public partial class ServiceSettingWindow : Window
     {
+        private readonly IServiceRepository _serviceRepository;
+
         private static ObservableCollection<Tuple<Service, bool>> allServicesData;
 
         public static ObservableCollection<Tuple<Service, bool>> AllServicesData
@@ -20,8 +23,10 @@ namespace ServiceManager
             get => allServicesData; set => allServicesData = value;
         }
 
-        public ServiceSettingWindow()
+        public ServiceSettingWindow(IServiceRepository serviceRepository)
         {
+            _serviceRepository = serviceRepository;
+
             InitializeComponent();
             InitializeServicesList();
             servicesList.ItemsSource = AllServicesData;
@@ -30,11 +35,11 @@ namespace ServiceManager
         /// <summary>
         /// Initialize list of all services
         /// </summary>
-        private void InitializeServicesList()
+        private async void InitializeServicesList()
         {
             AllServicesData = new ObservableCollection<Tuple<Service, bool>>();
 
-            foreach (Service service in Service.GetAllServices())
+            foreach (Service service in await _serviceRepository.GetAllServices())
             {
                 AllServicesData.Add(Tuple.Create(service, IsMonitored(service.MachineName)));
             }

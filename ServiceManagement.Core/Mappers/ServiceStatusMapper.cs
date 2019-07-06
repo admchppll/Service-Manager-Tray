@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ServiceManagement.Core.Models;
+using System;
 using System.ServiceProcess;
 
-namespace ServiceManagement.Core.Models
+namespace ServiceManagement.Core.Mappers
 {
-    public static class ServiceStatusConverter
+    internal static class ServiceStatusMapper
     {
         #region To Service Status Methods
 
@@ -12,7 +13,7 @@ namespace ServiceManagement.Core.Models
         /// </summary>
         /// <param name="status">The <see cref="ServiceControllerStatus"/> to convert</param>
         /// <returns>The converted status</returns>
-        /// <exception cref="ServiceClassLibrary.ServiceStatusConverter.ServiceStatusConversionException">Value out of bounds. The value selected does not exist in ServiceStatus</exception>
+        /// <exception cref="ServiceStatusMapperException">Value out of bounds. The value selected does not exist in ServiceStatus</exception>
         public static ServiceStatus FromServiceControllerStatus(ServiceControllerStatus status)
         {
             byte originalValue = (byte)status;
@@ -24,7 +25,7 @@ namespace ServiceManagement.Core.Models
             }
             catch (Exception)
             {
-                throw new ServiceStatusConversionException("Value out of bounds. The value selected does not exist in ServiceStatus");
+                throw new ServiceStatusMapperException("Value out of bounds. The value selected does not exist in ServiceStatus");
             }
 
             return output;
@@ -39,7 +40,7 @@ namespace ServiceManagement.Core.Models
         /// </summary>
         /// <param name="status">The <see cref="ServiceStatus"/> to convert</param>
         /// <returns>The converted status</returns>
-        /// <exception cref="ServiceClassLibrary.ServiceStatusConverter.ServiceStatusConversionException">Value out of bounds. The value selected does not exist in ServiceStatus</exception>
+        /// <exception cref="ServiceStatusMapperException">Value out of bounds. The value selected does not exist in ServiceStatus</exception>
         public static ServiceControllerStatus ToServiceControllerStatus(ServiceStatus status)
         {
             byte originalValue = (byte)status;
@@ -51,33 +52,12 @@ namespace ServiceManagement.Core.Models
             }
             catch (Exception)
             {
-                throw new ServiceStatusConversionException("Value out of bounds. The value selected does not exist in ServiceControllerStatus");
+                throw new ServiceStatusMapperException("Value out of bounds. The value selected does not exist in ServiceControllerStatus");
             }
 
             return output;
         }
 
         #endregion From Service Status Methods
-
-        /// <summary>
-        /// Exception to be thrown when conversion isn't possible
-        /// </summary>
-        /// <seealso cref="System.Exception" />
-        public class ServiceStatusConversionException : Exception
-        {
-            public ServiceStatusConversionException()
-            {
-            }
-
-            public ServiceStatusConversionException(string message)
-                : base(message)
-            {
-            }
-
-            public ServiceStatusConversionException(string message, Exception innerException)
-                : base(message, innerException)
-            {
-            }
-        }
     }
 }

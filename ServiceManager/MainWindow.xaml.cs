@@ -1,4 +1,5 @@
 ﻿using ServiceManagement.Core.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -20,6 +21,31 @@ namespace ServiceManager
         }
 
         public MainWindow()
+        {
+            this.Hide();
+            var container = new System.ComponentModel.Container();
+            var trayIcon = new System.Windows.Forms.NotifyIcon(container)
+            {
+                ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(),
+                Text = "Hello World Tray!",
+                Visible = true,
+                Icon = new System.Drawing.Icon("icon.ico")
+            };
+
+            trayIcon.DoubleClick += delegate (object sender, EventArgs args)
+            {
+                if (!this.IsVisible)
+                    this.Show();
+                else
+                    this.Hide();
+
+                this.WindowState = WindowState.Normal;
+            };
+
+            Initialize();
+        }
+
+        private void Initialize()
         {
             InitializeComponent();
 

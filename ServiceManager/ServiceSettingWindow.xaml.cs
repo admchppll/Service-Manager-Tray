@@ -1,4 +1,4 @@
-﻿using ServiceManagement.Core;
+﻿using ServiceManagement.Core.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;

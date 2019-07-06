@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceManager", "ServiceMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceManagerConsole", "ServiceManagerConsole\ServiceManagerConsole.csproj", "{CF537842-6251-45D8-B387-373CEFE052B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceManagement.Core", "ServiceClassLibrary\ServiceManagement.Core.csproj", "{70198946-BCB7-484F-9133-17718C19B27B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceManagement.Core", "ServiceManagement.Core\ServiceManagement.Core.csproj", "{70198946-BCB7-484F-9133-17718C19B27B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

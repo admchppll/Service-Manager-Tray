@@ -49,3 +49,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.19187.39787")]
 [assembly: AssemblyFileVersion("1.0.19187.39787")]
+

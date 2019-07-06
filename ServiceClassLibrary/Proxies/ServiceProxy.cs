@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace ServiceClassLibrary.Proxies
+namespace ServiceManagement.Core.Proxies
 {
     public class ServiceProxy : IServiceProxy
     {

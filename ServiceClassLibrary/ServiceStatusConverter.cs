@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceProcess;
 
-namespace ServiceClassLibrary
+namespace ServiceManagement.Core
 {
     public static class ServiceStatusConverter
     {
@@ -15,12 +15,12 @@ namespace ServiceClassLibrary
         /// <exception cref="ServiceClassLibrary.ServiceStatusConverter.ServiceStatusConversionException">Value out of bounds. The value selected does not exist in ServiceStatus</exception>
         public static ServiceStatus FromServiceControllerStatus(ServiceControllerStatus status)
         {
-            byte originalValue = (byte) status;
+            byte originalValue = (byte)status;
             ServiceStatus output;
 
             try
             {
-                output = (ServiceStatus) originalValue;
+                output = (ServiceStatus)originalValue;
             }
             catch (Exception)
             {
@@ -42,12 +42,12 @@ namespace ServiceClassLibrary
         /// <exception cref="ServiceClassLibrary.ServiceStatusConverter.ServiceStatusConversionException">Value out of bounds. The value selected does not exist in ServiceStatus</exception>
         public static ServiceControllerStatus ToServiceControllerStatus(ServiceStatus status)
         {
-            byte originalValue = (byte) status;
+            byte originalValue = (byte)status;
             ServiceControllerStatus output;
 
             try
             {
-                output = (ServiceControllerStatus) originalValue;
+                output = (ServiceControllerStatus)originalValue;
             }
             catch (Exception)
             {

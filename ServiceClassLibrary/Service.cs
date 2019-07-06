@@ -10,7 +10,7 @@ using System.ServiceProcess;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ServiceClassLibrary
+namespace ServiceManagement.Core
 {
     public class Service
     {
@@ -80,7 +80,7 @@ namespace ServiceClassLibrary
             {
                 try
                 {
-                    return (ServiceStatus) (byte) sc.Status;
+                    return (ServiceStatus)(byte)sc.Status;
                 }
                 catch (InvalidOperationException)
                 {
@@ -196,7 +196,7 @@ namespace ServiceClassLibrary
             using (StreamReader file = File.OpenText(servicesFile))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                result = (ObservableCollection<Service>) serializer.Deserialize(file, typeof(ObservableCollection<Service>));
+                result = (ObservableCollection<Service>)serializer.Deserialize(file, typeof(ObservableCollection<Service>));
             }
 
             return result;

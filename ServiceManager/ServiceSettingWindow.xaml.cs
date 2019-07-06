@@ -1,4 +1,4 @@
-﻿using ServiceClassLibrary;
+﻿using ServiceManagement.Core;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -53,7 +53,7 @@ namespace ServiceManager
         private void serviceFilter_KeyUp(object sender, KeyEventArgs e)
         {
             //Search case insensitive
-            string input = ((TextBox) sender).Text.ToLowerInvariant();
+            string input = ((TextBox)sender).Text.ToLowerInvariant();
 
             //if there is no text to filter by return all services
             if (string.IsNullOrWhiteSpace(input))

@@ -1,9 +1,9 @@
-﻿using ServiceClassLibrary.Services;
+﻿using ServiceManagement.Core.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 
-namespace ServiceClassLibrary.Repositories
+namespace ServiceManagement.Core.Repositories
 {
     public class ServiceRepository : IServiceRepository
     {
@@ -20,11 +20,12 @@ namespace ServiceClassLibrary.Repositories
 
         public ICollection<Service> GetAllServices()
         {
-            var services = (ICollection<Service>)ServiceController.GetServices().Select(service => new Service()
-            {
-                Name = service.DisplayName,
-                MachineName = service.ServiceName
-            });
+            var services = (ICollection<Service>)ServiceController.GetServices()
+                .Select(service => new Service()
+                {
+                    Name = service.DisplayName,
+                    MachineName = service.ServiceName
+                });
 
             _descriptionService.SetDescription(services);
             _statusService.SetStatus(services);

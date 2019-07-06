@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 
-namespace ServiceClassLibrary.Repositories
+namespace ServiceManagement.Core.Repositories
 {
     public class WatchedServiceRepository : IWatchedServiceRepository
     {

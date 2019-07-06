@@ -1,4 +1,4 @@
-﻿using ServiceClassLibrary;
+﻿using ServiceManagement.Core;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -37,7 +37,7 @@ namespace ServiceManager
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Service selected = (Service) ((ContentControl) sender).Content;
+            Service selected = (Service)((ContentControl)sender).Content;
             selected.Toggle();
         }
 
@@ -57,7 +57,7 @@ namespace ServiceManager
 
         private void toggleBtn_Click(object sender, RoutedEventArgs e)
         {
-            Service selected = (Service) ((ContentControl) sender).DataContext;
+            Service selected = (Service)((ContentControl)sender).DataContext;
             selected.Toggle();
             RefreshServiceList();
         }

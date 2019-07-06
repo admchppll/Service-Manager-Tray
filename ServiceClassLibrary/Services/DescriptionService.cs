@@ -3,7 +3,7 @@ using System.Linq;
 using System.Management;
 using System.Threading.Tasks;
 
-namespace ServiceClassLibrary.Services
+namespace ServiceManagement.Core.Services
 {
     public class DescriptionService : IDescriptionService
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 
-namespace ServiceClassLibrary.Services
+namespace ServiceManagement.Core.Services
 {
     public class StatusService : IStatusService
     {

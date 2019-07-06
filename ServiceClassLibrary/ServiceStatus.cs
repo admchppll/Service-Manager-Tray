@@ -1,4 +1,4 @@
-﻿namespace ServiceClassLibrary
+﻿namespace ServiceManagement.Core
 {
     /// <summary>
     /// Indicates the current state of the service.

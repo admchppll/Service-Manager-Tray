@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Linq;
-using System.ServiceProcess;
 
 namespace ServiceManagement.Core.Models
 {
@@ -56,59 +52,14 @@ namespace ServiceManagement.Core.Models
         }
 
         /// <summary>
-        /// Lists all services in the system
-        /// </summary>
-        /// <returns></returns>
-        public static ObservableCollection<Service> GetAllServices()
-        {
-            List<Service> services = ServiceController.GetServices().Select(x => new Service()
-            {
-                Name = x.DisplayName,
-                MachineName = x.ServiceName,
-                Description = "",
-                Status = ServiceStatus.ContinuePending
-            }).ToList();
-
-            return new ObservableCollection<Service>(services);
-        }
-
-        /// <summary>
         /// Set the Selected flag on the service objects in observable collection/>
         /// </summary>
         /// <param name="allServices">The collection of services to set the Selected flag on</param>
         /// <param name="selectedServices">The services to mark in the other collection</param>
         public static void SetSelectedFlags(ref ObservableCollection<Service> allServices, ref ObservableCollection<Service> selectedServices)
         {
-            //
+            //Holding comment
         }
-
-        #region TestCode
-
-        //TODO: Remove when completing dev
-        /// <summary>
-        /// Return a list of sample the services for design use.
-        /// </summary>
-        /// <returns>List of 10 sample services</returns>
-        public static ObservableCollection<Service> SampleServices()
-        {
-            ObservableCollection<Service> result = new ObservableCollection<Service>();
-
-            Service item1;
-            for (var i = 1; i < 10; i++)
-            {
-                item1 = new Service
-                {
-                    Name = "Service Name " + i,
-                    Description = "Description " + i,
-                    MachineName = "MachineName " + i
-                };
-                result.Add(item1);
-            }
-
-            return result;
-        }
-
-        #endregion TestCode
 
         /*
 

@@ -1,4 +1,5 @@
 ﻿using ServiceManagement.Core.Startup;
+using System;
 using System.Windows;
 using Unity;
 
@@ -17,7 +18,25 @@ namespace ServiceManager
             UnityBootstrapper.Register(container);
 
             var window = container.Resolve<MainWindow>();
-            window.Show();
+
+            var trayContainer = new System.ComponentModel.Container();
+            var trayIcon = new System.Windows.Forms.NotifyIcon(trayContainer)
+            {
+                ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(),
+                Text = "Hello World Tray!",
+                Visible = true,
+                Icon = new System.Drawing.Icon("icon.ico")
+            };
+
+            trayIcon.DoubleClick += delegate (object sender, EventArgs args)
+            {
+                if (!window.IsVisible)
+                    window.Show();
+                else
+                    window.Hide();
+
+                window.WindowState = WindowState.Normal;
+            };
         }
     }
 }

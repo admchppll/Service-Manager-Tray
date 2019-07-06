@@ -19,6 +19,8 @@ namespace ServiceManagement.Core.Repositories
         {
             _statusService = statusService;
             _descriptionService = descriptionService;
+
+            _cachedServices = new List<Service>();
         }
 
         public async Task<ICollection<Service>> GetAllServices()

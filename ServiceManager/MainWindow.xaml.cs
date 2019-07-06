@@ -1,6 +1,5 @@
 ﻿using ServiceManagement.Core.Models;
 using ServiceManagement.Core.Repositories;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -26,43 +25,18 @@ namespace ServiceManager
         {
             _serviceRepository = serviceRepository;
 
-            Hide();
-            var container = new System.ComponentModel.Container();
-            var trayIcon = new System.Windows.Forms.NotifyIcon(container)
-            {
-                ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(),
-                Text = "Hello World Tray!",
-                Visible = true,
-                Icon = new System.Drawing.Icon("icon.ico")
-            };
+            ShowInTaskbar = false;
 
-            trayIcon.DoubleClick += delegate (object sender, EventArgs args)
-            {
-                if (!IsVisible)
-                    Show();
-                else
-                    Hide();
-
-                WindowState = WindowState.Normal;
-            };
-
-            Initialize();
-        }
-
-        private void Initialize()
-        {
             InitializeComponent();
 
             //Place Bottom Right of Screen
             var desktopWorkingArea = SystemParameters.WorkArea;
             Left = desktopWorkingArea.Right - Width;
             Top = desktopWorkingArea.Bottom - Height;
+            Topmost = true;
 
-            //Set data
-            //ServicesData = Service.DeserializeFromFile();
-            //ServicesData = Service.GetAllServices();
             ServicesData = new ObservableCollection<Service>(_serviceRepository.GetAllServices().Result);
-            //Service.UpdateStatus(ref servicesData);
+
             servicesList.ItemsSource = ServicesData;
         }
 

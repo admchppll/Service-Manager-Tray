@@ -22,7 +22,7 @@ namespace ServiceManager
 
         public MainWindow()
         {
-            this.Hide();
+            Hide();
             var container = new System.ComponentModel.Container();
             var trayIcon = new System.Windows.Forms.NotifyIcon(container)
             {
@@ -34,12 +34,12 @@ namespace ServiceManager
 
             trayIcon.DoubleClick += delegate (object sender, EventArgs args)
             {
-                if (!this.IsVisible)
-                    this.Show();
+                if (!IsVisible)
+                    Show();
                 else
-                    this.Hide();
+                    Hide();
 
-                this.WindowState = WindowState.Normal;
+                WindowState = WindowState.Normal;
             };
 
             Initialize();
@@ -51,8 +51,8 @@ namespace ServiceManager
 
             //Place Bottom Right of Screen
             var desktopWorkingArea = SystemParameters.WorkArea;
-            this.Left = desktopWorkingArea.Right - this.Width;
-            this.Top = desktopWorkingArea.Bottom - this.Height;
+            Left = desktopWorkingArea.Right - Width;
+            Top = desktopWorkingArea.Bottom - Height;
 
             //Set data
             //ServicesData = Service.DeserializeFromFile();

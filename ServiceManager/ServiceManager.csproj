@@ -146,12 +146,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceClassLibrary\ServiceManagement.Core.csproj">
-      <Project>{70198946-bcb7-484f-9133-17718c19b27b}</Project>
-      <Name>ServiceManagement.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -167,6 +161,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceManagement.Core\ServiceManagement.Core.csproj">
+      <Project>{70198946-BCB7-484F-9133-17718C19B27B}</Project>
+      <Name>ServiceManagement.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

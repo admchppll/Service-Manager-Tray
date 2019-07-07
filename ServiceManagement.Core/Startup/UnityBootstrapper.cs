@@ -1,7 +1,6 @@
 ﻿using ServiceManagement.Core.Clients;
 using ServiceManagement.Core.Repositories;
 using ServiceManagement.Core.Services;
-using System;
 using Unity;
 using Unity.Lifetime;
 
@@ -25,9 +24,9 @@ namespace ServiceManagement.Core.Startup
             container.RegisterType<IStatusService, StatusService>(new TransientLifetimeManager());
         }
 
-        public static object Resolve(Type type)
+        public static t Resolve<t>()
         {
-            return Container.Resolve(type, string.Empty);
+            return (t)Container.Resolve(typeof(t), string.Empty);
         }
 
         protected UnityBootstrapper()

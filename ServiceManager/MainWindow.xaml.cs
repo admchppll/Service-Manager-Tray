@@ -1,4 +1,5 @@
-﻿using ServiceManagement.Core.Models;
+﻿using ServiceManagement.Core.Interfaces;
+using ServiceManagement.Core.Models;
 using ServiceManagement.Core.Repositories;
 using ServiceManagement.Core.Startup;
 using System;
@@ -13,14 +14,15 @@ namespace ServiceManager
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IToggleWindow
     {
         private readonly IServiceRepository _serviceRepository;
         private static ObservableCollection<Service> servicesData;
 
         public static ObservableCollection<Service> ServicesData
         {
-            get => servicesData; set => servicesData = value;
+            get => servicesData;
+            set => servicesData = value;
         }
 
         public MainWindow(IServiceRepository serviceRepository)
@@ -67,7 +69,7 @@ namespace ServiceManager
         {
             if (!Application.Current.Windows.OfType<ServiceSettingWindow>().Any())
             {
-                var setting = (ServiceSettingWindow)UnityBootstrapper.Resolve(typeof(ServiceSettingWindow));
+                var setting = UnityBootstrapper.Resolve<ServiceSettingWindow>();
                 setting.Show();
             }
         }

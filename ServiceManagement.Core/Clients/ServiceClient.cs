@@ -12,6 +12,19 @@ namespace ServiceManagement.Core.Clients
     {
         private const string AccessDeniedText = "Access is denied";
 
+        private readonly ServiceStatus[] _canToggle = {
+                ServiceStatus.Running,
+                ServiceStatus.Stopped,
+                ServiceStatus.Paused
+            };
+
+        private readonly ServiceStatus[] _pendingActionStatuses = {
+                ServiceStatus.StartPending,
+                ServiceStatus.StopPending,
+                ServiceStatus.ContinuePending,
+                ServiceStatus.PausePending
+            };
+
         private readonly IStatusService _statusService;
 
         public ServiceClient(IStatusService statusService)
@@ -119,22 +132,9 @@ namespace ServiceManagement.Core.Clients
 
         public async Task<ServiceStatus> ToggleService(string serviceName)
         {
-            ServiceStatus[] CanToggle = {
-                ServiceStatus.Running,
-                ServiceStatus.Stopped,
-                ServiceStatus.Paused
-            };
-
-            ServiceStatus[] PendingActionStatus = {
-                ServiceStatus.StartPending,
-                ServiceStatus.StopPending,
-                ServiceStatus.ContinuePending,
-                ServiceStatus.PausePending
-            };
-
             var currentStatus = await _statusService.GetStatus(serviceName);
 
-            if (CanToggle.Contains(currentStatus))
+            if (_canToggle.Contains(currentStatus))
             {
                 switch (currentStatus)
                 {
@@ -147,7 +147,7 @@ namespace ServiceManagement.Core.Clients
                 }
             }
 
-            if (PendingActionStatus.Contains(currentStatus))
+            if (_pendingActionStatuses.Contains(currentStatus))
                 throw new InvalidOperationException($"Cannot toggle {serviceName} whilst there is already a pending action ({currentStatus})");
 
             return currentStatus;

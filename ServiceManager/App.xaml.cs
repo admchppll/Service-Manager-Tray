@@ -1,6 +1,5 @@
 ﻿using ServiceManagement.Core.Startup;
 using ServiceManager.TrayIcon;
-using System;
 using System.Windows;
 using Unity;
 
@@ -11,31 +10,23 @@ namespace ServiceManager
     /// </summary>
     public partial class App : Application
     {
-        private System.Windows.Forms.NotifyIcon trayIcon;
+        private System.Windows.Forms.NotifyIcon _trayIcon;
+        private IUnityContainer _container = new UnityContainer();
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            IUnityContainer container = new UnityContainer();
-            UnityBootstrapper.Register(container);
+            UnityBootstrapper.Register(_container);
 
-            var window = container.Resolve<MainWindow>();
+            var window = _container.Resolve<MainWindow>();
 
-            var componentModelContainer = new System.ComponentModel.Container();
-            var trayIconBuilder = new TrayIconBuilder(ref componentModelContainer);
-            var contextMenuBuilder = new ContextMenuStripBuilder(ref componentModelContainer);
-
-            trayIcon = trayIconBuilder
-                .WithIconText("Service Manager")
-                .WithDoubleClickWindowAction(window.GetWindowToggleAction())
-                .WithContextMenuStrip(contextMenuBuilder.Build())
-                .Build();
+            _trayIcon = ServiceManagerTrayIcon.Create(window);
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            trayIcon.Dispose();
+            _trayIcon.Dispose();
             base.OnExit(e);
         }
     }

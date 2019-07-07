@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="Clients\IServiceClient.cs" />
     <Compile Include="Clients\ServiceClient.cs" />
+    <Compile Include="Interfaces\IBuilder.cs" />
+    <Compile Include="Interfaces\IToggleWindow.cs" />
     <Compile Include="Mappers\ServiceStatusMapper.cs" />
     <Compile Include="Mappers\ServiceStatusMapperException.cs" />
     <Compile Include="Repositories\IWatchedServiceRepository.cs" />

@@ -1,4 +1,5 @@
-﻿using ServiceManagement.Core.Models;
+﻿using ServiceManagement.Core.Mappers;
+using ServiceManagement.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace ServiceManagement.Core.Services
             {
                 try
                 {
-                    return await Task.FromResult((ServiceStatus)(byte)sc.Status);
+                    var status = ServiceStatusMapper.FromServiceControllerStatus(sc.Status);
+                    return await Task.FromResult(status);
                 }
                 catch (InvalidOperationException)
                 {

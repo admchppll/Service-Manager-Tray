@@ -1,9 +1,9 @@
 ﻿using System;
 using ContextMenuStrip = System.Windows.Forms.ContextMenuStrip;
+using IContainer = System.ComponentModel.IContainer;
 using NotifyIcon = System.Windows.Forms.NotifyIcon;
-using Container = System.ComponentModel.Container;
 
-namespace ServiceManager.TrayIcon
+namespace ServiceManager.TrayIcon.Builders
 {
     public class TrayIconBuilder
     {
@@ -13,14 +13,14 @@ namespace ServiceManager.TrayIcon
         private string _trayIconText = string.Empty;
         private Action<object, EventArgs> _doubleClickAction;
         private System.Drawing.Icon _icon;
-        private readonly Container _container;
+        private readonly IContainer _container;
 
-        public TrayIconBuilder(ref Container container)
+        public TrayIconBuilder(ref IContainer container)
         {
             _container = container;
         }
 
-        public TrayIconBuilder(Container container)
+        public TrayIconBuilder(IContainer container)
         {
             _container = container;
         }
@@ -70,10 +70,12 @@ namespace ServiceManager.TrayIcon
         private void AddDoubleClickDelegate(ref NotifyIcon trayIcon)
         {
             if (_doubleClickAction != null)
+            {
                 trayIcon.DoubleClick += delegate (object sender, EventArgs args)
                 {
                     _doubleClickAction(sender, args);
                 };
+            }
         }
 
         private void AddContextMenuStrip(ref NotifyIcon trayIcon)
@@ -84,12 +86,9 @@ namespace ServiceManager.TrayIcon
 
         private System.Drawing.Icon GetIcon()
         {
-            if (_icon != null)
-            {
-                return _icon;
-            }
-
-            return new System.Drawing.Icon(DefaultIconPath);
+            return _icon != null
+                ? _icon
+                : new System.Drawing.Icon(DefaultIconPath);
         }
 
         private string GetIconText()

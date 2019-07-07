@@ -30,7 +30,7 @@ namespace ServiceManagement.Core.Services
 
         public async Task<Service> SetDescription(Service service)
         {
-            service.Description = await GetDescription(service.Name);
+            service.Description = await GetDescription(service.MachineName);
             return service;
         }
 

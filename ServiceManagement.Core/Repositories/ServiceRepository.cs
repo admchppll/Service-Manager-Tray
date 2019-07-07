@@ -1,4 +1,5 @@
-﻿using ServiceManagement.Core.Models;
+﻿using ServiceManagement.Core.Mappers;
+using ServiceManagement.Core.Models;
 using ServiceManagement.Core.Services;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,11 +46,11 @@ namespace ServiceManagement.Core.Repositories
                 .Select(service => new Service()
                 {
                     Name = service.DisplayName,
-                    MachineName = service.ServiceName
+                    MachineName = service.ServiceName,
+                    Status = ServiceStatusMapper.FromServiceControllerStatus(service.Status)
                 });
 
             services = await _descriptionService.SetDescription(services);
-            services = await _statusService.SetStatus(services);
 
             _cachedServices = services;
             return services;

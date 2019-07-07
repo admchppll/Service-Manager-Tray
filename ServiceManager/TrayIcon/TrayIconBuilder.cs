@@ -1,4 +1,7 @@
 ﻿using System;
+using ContextMenuStrip = System.Windows.Forms.ContextMenuStrip;
+using NotifyIcon = System.Windows.Forms.NotifyIcon;
+using Container = System.ComponentModel.Container;
 
 namespace ServiceManager.TrayIcon
 {
@@ -6,13 +9,20 @@ namespace ServiceManager.TrayIcon
     {
         private const string DefaultIconPath = "icon.ico";
 
-        private System.Windows.Forms.NotifyIcon _trayIcon;
+        private ContextMenuStrip _contextMenuStrip;
         private string _trayIconText = string.Empty;
         private Action<object, EventArgs> _doubleClickAction;
         private System.Drawing.Icon _icon;
+        private readonly Container _container;
 
-        public TrayIconBuilder()
+        public TrayIconBuilder(ref Container container)
         {
+            _container = container;
+        }
+
+        public TrayIconBuilder(Container container)
+        {
+            _container = container;
         }
 
         public TrayIconBuilder WithIconText(string iconText)
@@ -27,38 +37,49 @@ namespace ServiceManager.TrayIcon
             return this;
         }
 
-        public TrayIconBuilder WithDoubleClickWindowAction(Action<object, EventArgs> eventHandler)
+        public TrayIconBuilder WithDoubleClickWindowAction(Action<object, EventArgs> action)
         {
-            _doubleClickAction = eventHandler;
+            _doubleClickAction = action;
             return this;
         }
 
-        public System.Windows.Forms.NotifyIcon Build()
+        public TrayIconBuilder WithContextMenuStrip(ContextMenuStrip contextMenuStrip)
         {
-            CreateBaseNotifyIcon();
-            AddDoubleClickDelegate();
-            return _trayIcon;
+            _contextMenuStrip = contextMenuStrip;
+            return this;
         }
 
-        private void CreateBaseNotifyIcon()
+        public NotifyIcon Build()
         {
-            var trayContainer = new System.ComponentModel.Container();
-            _trayIcon = new System.Windows.Forms.NotifyIcon(trayContainer)
+            var trayIcon = CreateBaseNotifyIcon();
+            AddContextMenuStrip(ref trayIcon);
+            AddDoubleClickDelegate(ref trayIcon);
+            return trayIcon;
+        }
+
+        private NotifyIcon CreateBaseNotifyIcon()
+        {
+            return new NotifyIcon(_container)
             {
-                ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(),
                 Text = GetIconText(),
-                Visible = true,
-                Icon = GetIcon()
+                Icon = GetIcon(),
+                Visible = true
             };
         }
 
-        private void AddDoubleClickDelegate()
+        private void AddDoubleClickDelegate(ref NotifyIcon trayIcon)
         {
             if (_doubleClickAction != null)
-                _trayIcon.DoubleClick += delegate (object sender, EventArgs args)
+                trayIcon.DoubleClick += delegate (object sender, EventArgs args)
                 {
                     _doubleClickAction(sender, args);
                 };
+        }
+
+        private void AddContextMenuStrip(ref NotifyIcon trayIcon)
+        {
+            if (_contextMenuStrip != null)
+                trayIcon.ContextMenuStrip = _contextMenuStrip;
         }
 
         private System.Drawing.Icon GetIcon()

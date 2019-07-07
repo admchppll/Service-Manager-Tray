@@ -65,16 +65,16 @@ namespace ServiceManager
 
         private void settingBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!System.Windows.Application.Current.Windows.OfType<ServiceSettingWindow>().Any())
+            if (!Application.Current.Windows.OfType<ServiceSettingWindow>().Any())
             {
-                var setting = (ServiceSettingWindow)UnityBootstrapper.Resolve(typeof(ServiceSettingWindow));// setting = new ServiceSettingWindow();
+                var setting = (ServiceSettingWindow)UnityBootstrapper.Resolve(typeof(ServiceSettingWindow));
                 setting.Show();
             }
         }
 
         private void closeBtn_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
         private void toggleBtn_Click(object sender, RoutedEventArgs e)

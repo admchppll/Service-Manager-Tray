@@ -107,6 +107,7 @@
     <Compile Include="ServiceSettingWindow.xaml.cs">
       <DependentUpon>ServiceSettingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TrayIcon\ContextMenuStripBuilder.cs" />
     <Compile Include="TrayIcon\TrayIconBuilder.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

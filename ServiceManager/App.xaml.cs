@@ -22,10 +22,14 @@ namespace ServiceManager
 
             var window = container.Resolve<MainWindow>();
 
-            var trayIconBuilder = new TrayIconBuilder();
+            var componentModelContainer = new System.ComponentModel.Container();
+            var trayIconBuilder = new TrayIconBuilder(ref componentModelContainer);
+            var contextMenuBuilder = new ContextMenuStripBuilder(ref componentModelContainer);
+
             trayIcon = trayIconBuilder
                 .WithIconText("Service Manager")
                 .WithDoubleClickWindowAction(window.GetWindowToggleAction())
+                .WithContextMenuStrip(contextMenuBuilder.Build())
                 .Build();
         }
 

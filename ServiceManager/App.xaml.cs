@@ -1,4 +1,5 @@
 ﻿using ServiceManagement.Core.Startup;
+using ServiceManager.TrayIcon;
 using System;
 using System.Windows;
 using Unity;
@@ -21,24 +22,11 @@ namespace ServiceManager
 
             var window = container.Resolve<MainWindow>();
 
-            var trayContainer = new System.ComponentModel.Container();
-            trayIcon = new System.Windows.Forms.NotifyIcon(trayContainer)
-            {
-                ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(),
-                Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name,
-                Visible = true,
-                Icon = new System.Drawing.Icon("icon.ico")
-            };
-
-            trayIcon.DoubleClick += delegate (object sender, EventArgs args)
-            {
-                if (!window.IsVisible)
-                    window.Show();
-                else
-                    window.Hide();
-
-                window.WindowState = WindowState.Normal;
-            };
+            var trayIconBuilder = new TrayIconBuilder();
+            trayIcon = trayIconBuilder
+                .WithIconText("Service Manager")
+                .WithDoubleClickWindowAction(window.GetWindowToggleAction())
+                .Build();
         }
 
         protected override void OnExit(ExitEventArgs e)

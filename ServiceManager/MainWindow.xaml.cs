@@ -1,6 +1,7 @@
 ﻿using ServiceManagement.Core.Models;
 using ServiceManagement.Core.Repositories;
 using ServiceManagement.Core.Startup;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -39,6 +40,21 @@ namespace ServiceManager
             ServicesData = new ObservableCollection<Service>(_serviceRepository.GetAllServices().Result);
 
             servicesList.ItemsSource = ServicesData;
+        }
+
+        public Action<object, EventArgs> GetWindowToggleAction()
+        {
+            return delegate (object sender, EventArgs args)
+            {
+                if (!IsVisible)
+                {
+                    Show();
+                }
+                else
+                    Hide();
+
+                WindowState = WindowState.Normal;
+            };
         }
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)

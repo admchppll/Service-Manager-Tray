@@ -1,4 +1,5 @@
 ﻿using ServiceManagement.Core.Interfaces;
+using ServiceManager.TrayIcon.ContextMenu.Items;
 using System;
 using Container = System.ComponentModel.IContainer;
 using ContextMenuStrip = System.Windows.Forms.ContextMenuStrip;
@@ -28,7 +29,8 @@ namespace ServiceManager.TrayIcon.Builders
 
         public void AddExitOption(ref ContextMenuStrip contextMenuStrip)
         {
-            contextMenuStrip.Items.Add("Exit", null, new EventHandler(_exitFunction));
+            contextMenuStrip.Items.Add("Add", null, new EventHandler(_exitFunction));
+            contextMenuStrip.Items.Add(CloseProgramItem.Create());
         }
     }
 }

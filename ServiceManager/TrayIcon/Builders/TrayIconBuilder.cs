@@ -13,14 +13,10 @@ namespace ServiceManager.TrayIcon.Builders
         private string _trayIconText = string.Empty;
         private Action<object, EventArgs> _doubleClickAction;
         private System.Drawing.Icon _icon;
+
         private readonly IContainer _container;
 
         public TrayIconBuilder(ref IContainer container)
-        {
-            _container = container;
-        }
-
-        public TrayIconBuilder(IContainer container)
         {
             _container = container;
         }

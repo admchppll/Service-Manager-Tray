@@ -108,11 +108,9 @@
       <DependentUpon>ServiceSettingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TrayIcon\Builders\ContextMenuStripBuilder.cs" />
-    <Compile Include="TrayIcon\ContextMenu\ContextMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="TrayIcon\ContextMenu\ContextMenuItemFactory.cs" />
     <Compile Include="TrayIcon\ContextMenu\Items\CloseProgramItem.cs" />
+    <Compile Include="TrayIcon\ContextMenu\Items\SettingsItem.cs" />
     <Compile Include="TrayIcon\ServiceManagerTrayIcon.cs" />
     <Compile Include="TrayIcon\Builders\TrayIconBuilder.cs" />
     <Page Include="MainWindow.xaml">

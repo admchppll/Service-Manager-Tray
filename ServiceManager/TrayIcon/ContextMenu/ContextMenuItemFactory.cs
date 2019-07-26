@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace ServiceManager.TrayIcon.ContextMenu
+﻿namespace ServiceManager.TrayIcon.ContextMenu
 {
     public abstract class ContextMenuItemFactory
     {
-        public abstract Dictionary<int, ContextMenuItem> CreateMenuItems();
+        //public abstract Dictionary<int, ContextMenuItem> CreateMenuItems();
     }
 }

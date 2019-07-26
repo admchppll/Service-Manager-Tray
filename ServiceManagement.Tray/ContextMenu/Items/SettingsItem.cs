@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Windows.Forms;
+
+//using Application = System.Windows.Application;
 using Image = System.Drawing.Image;
 
-namespace ServiceManager.TrayIcon.ContextMenu.Items
+namespace ServiceManagement.Tray.ContextMenu.Items
 {
-    public class CloseProgramItem
+    internal class SettingsItem
     {
-        private const string _label = "Close";
+        private const string _label = "Settings";
         private static readonly Image _image = default(Image);
 
         private static readonly Action<object, EventArgs> _action = delegate (object sender, EventArgs args)
         {
-            System.Windows.Application.Current.Shutdown();
+            //            if (!Application.Current.Windows.OfType<ServiceSettingWindow>().Any())
+            //            {
+            //                UnityBootstrapper.Resolve<ServiceSettingWindow>().Show();
+            //            }
         };
 
-        protected CloseProgramItem()
+        protected SettingsItem()
         {
         }
 

@@ -2,16 +2,16 @@
 using System.Windows.Forms;
 using Image = System.Drawing.Image;
 
-namespace ServiceManager.TrayIcon.ContextMenu.Items
+namespace ServiceManagement.Tray.ContextMenu.Items
 {
-    public class CloseProgramItem
+    internal class CloseProgramItem
     {
         private const string _label = "Close";
         private static readonly Image _image = default(Image);
 
         private static readonly Action<object, EventArgs> _action = delegate (object sender, EventArgs args)
         {
-            System.Windows.Application.Current.Shutdown();
+            //System.Windows.Application.Current.Shutdown();
         };
 
         protected CloseProgramItem()

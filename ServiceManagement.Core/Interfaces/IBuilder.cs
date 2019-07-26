@@ -1,7 +1,7 @@
 ﻿namespace ServiceManagement.Core.Interfaces
 {
-    public interface IBuilder<t>
+    public interface IBuilder<TOut>
     {
-        t Build();
+        TOut Build();
     }
 }

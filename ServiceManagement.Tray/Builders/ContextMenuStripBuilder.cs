@@ -1,16 +1,16 @@
 ﻿using ServiceManagement.Core.Interfaces;
-using ServiceManager.TrayIcon.ContextMenu.Items;
+using ServiceManagement.Tray.ContextMenu.Items;
 using System;
 using Container = System.ComponentModel.IContainer;
 using ContextMenuStrip = System.Windows.Forms.ContextMenuStrip;
 
-namespace ServiceManager.TrayIcon.Builders
+namespace ServiceManagement.Tray.Builders
 {
     public class ContextMenuStripBuilder : IBuilder<ContextMenuStrip>
     {
         private readonly Action<object, EventArgs> _exitFunction = delegate (object sender, EventArgs args)
         {
-            System.Windows.Application.Current.Shutdown();
+            //System.Windows.Application.Current.Shutdown();
         };
 
         private readonly Container _container;

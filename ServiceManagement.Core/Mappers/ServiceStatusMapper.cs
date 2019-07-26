@@ -4,7 +4,7 @@ using System.ServiceProcess;
 
 namespace ServiceManagement.Core.Mappers
 {
-    internal static class ServiceStatusMapper
+    public static class ServiceStatusMapper
     {
         #region To Service Status Methods
 

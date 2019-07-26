@@ -1,18 +1,18 @@
 ﻿using ServiceManagement.Core.Mappers;
 using ServiceManagement.Core.Models;
+using ServiceManagement.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 
-namespace ServiceManagement.Core.Services
+namespace ServiceManagement.Services
 {
     public class StatusService : IStatusService
     {
         public async Task<Service> SetStatus(Service service)
         {
-            //TODO: This is unfinished, need to refactor the Service Client into this project
             service.Status = await GetStatus(service.Name);
             return service;
         }

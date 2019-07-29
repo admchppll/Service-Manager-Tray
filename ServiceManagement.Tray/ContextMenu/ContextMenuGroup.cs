@@ -2,16 +2,16 @@
 
 namespace ServiceManagement.Tray.ContextMenu
 {
-    public class ContextMenuGroup
+    internal class ContextMenuGroup
     {
-        public int Priority { get; set; }
-        public List<ContextMenuItem> MenuItems { get; set; }
+        internal int Priority { get; set; }
+        internal List<ContextMenuItem> MenuItems { get; set; }
 
-        public ContextMenuGroup()
+        internal ContextMenuGroup()
         { }
     }
 
-    public class ContextMenuGroupComparer : IComparer<ContextMenuGroup>
+    internal class ContextMenuGroupComparer : IComparer<ContextMenuGroup>
     {
         public int Compare(ContextMenuGroup x, ContextMenuGroup y)
         {

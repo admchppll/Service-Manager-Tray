@@ -1,6 +1,7 @@
 ﻿using ServiceManagement.Core.Mappers;
 using ServiceManagement.Core.Models;
 using ServiceManagement.Core.Services;
+using ServiceManagement.Data.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
@@ -35,9 +36,7 @@ namespace ServiceManagement.Data.Repositories
 
         private async Task<IEnumerable<Service>> GetServicesFromCache()
         {
-            var services = await _statusService.SetStatus(_cachedServices);
-            _cachedServices = services;
-            return services;
+            return _cachedServices = await _statusService.SetStatus(_cachedServices);
         }
 
         private async Task<IEnumerable<Service>> GetServicesFromSystem()

@@ -1,7 +1,7 @@
 ﻿using ServiceManagement.Core.Models;
 using System.Collections.Generic;
 
-namespace ServiceManagement.Data.Repositories
+namespace ServiceManagement.Data.Repositories.Interfaces
 {
     public interface IWatchedServiceRepository
     {

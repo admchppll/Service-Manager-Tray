@@ -46,8 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IServiceRepository.cs" />
-    <Compile Include="Repositories\IWatchedServiceRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IServiceRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IWatchedServiceRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
     <Compile Include="Repositories\WatchedServiceRepository.cs" />
   </ItemGroup>

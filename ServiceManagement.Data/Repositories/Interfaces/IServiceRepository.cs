@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ServiceManagement.Data.Repositories
+namespace ServiceManagement.Data.Repositories.Interfaces
 {
     public interface IServiceRepository
     {

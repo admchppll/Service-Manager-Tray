@@ -1,5 +1,5 @@
 ﻿using ServiceManagement.Core.Startup;
-using ServiceManager.TrayIcon;
+using ServiceManagement.Tray;
 using System.Windows;
 using Unity;
 
@@ -21,7 +21,7 @@ namespace ServiceManager
 
             var window = _container.Resolve<MainWindow>();
 
-            _trayIcon = ServiceManagerTrayIcon.Create(window);
+            _trayIcon = Icon.Create(window);
         }
 
         protected override void OnExit(ExitEventArgs e)

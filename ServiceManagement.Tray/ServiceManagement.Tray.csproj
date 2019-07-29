@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="Builders\ContextMenuStripBuilder.cs" />
     <Compile Include="Builders\TrayIconBuilder.cs" />
+    <Compile Include="ContextMenu\ContextMenuGroup.cs" />
+    <Compile Include="ContextMenu\ContextMenuItem.cs" />
     <Compile Include="ContextMenu\ContextMenuItemFactory.cs" />
     <Compile Include="ContextMenu\Items\CloseProgramItem.cs" />
     <Compile Include="ContextMenu\Items\SettingsItem.cs" />

@@ -107,12 +107,6 @@
     <Compile Include="ServiceSettingWindow.xaml.cs">
       <DependentUpon>ServiceSettingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TrayIcon\Builders\ContextMenuStripBuilder.cs" />
-    <Compile Include="TrayIcon\ContextMenu\ContextMenuItemFactory.cs" />
-    <Compile Include="TrayIcon\ContextMenu\Items\CloseProgramItem.cs" />
-    <Compile Include="TrayIcon\ContextMenu\Items\SettingsItem.cs" />
-    <Compile Include="TrayIcon\ServiceManagerTrayIcon.cs" />
-    <Compile Include="TrayIcon\Builders\TrayIconBuilder.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -181,6 +175,10 @@
     <ProjectReference Include="..\ServiceManagement.Core\ServiceManagement.Core.csproj">
       <Project>{70198946-BCB7-484F-9133-17718C19B27B}</Project>
       <Name>ServiceManagement.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceManagement.Tray\ServiceManagement.Tray.csproj">
+      <Project>{c6b8fb99-65d1-41df-87eb-1b95396175d3}</Project>
+      <Name>ServiceManagement.Tray</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

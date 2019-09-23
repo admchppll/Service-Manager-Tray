@@ -1,4 +1,5 @@
 ﻿using ServiceManagement.Core.Startup;
+using ServiceManagement.Data.Database;
 using ServiceManagement.Tray;
 using System.Windows;
 using Unity;
@@ -13,14 +14,14 @@ namespace ServiceManager
         private System.Windows.Forms.NotifyIcon _trayIcon;
         private IUnityContainer _container = new UnityContainer();
 
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             UnityBootstrapper.Register(_container);
 
             var window = _container.Resolve<MainWindow>();
-
+            await DbInitialise.Initialise();
             _trayIcon = Icon.Create(window);
         }
 

@@ -1,7 +1,7 @@
 ﻿using ServiceManagement.Core.Interfaces;
 using ServiceManagement.Core.Models;
-using ServiceManagement.Core.Repositories;
 using ServiceManagement.Core.Startup;
+using ServiceManagement.Data.Repositories.Interfaces;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,6 +17,7 @@ namespace ServiceManager
     public partial class MainWindow : Window, IToggleWindow
     {
         private readonly IServiceRepository _serviceRepository;
+        private readonly IWatchedServiceRepository _watchedServiceRepository;
         private static ObservableCollection<Service> servicesData;
 
         public static ObservableCollection<Service> ServicesData
@@ -25,9 +26,11 @@ namespace ServiceManager
             set => servicesData = value;
         }
 
-        public MainWindow(IServiceRepository serviceRepository)
+        public MainWindow(IServiceRepository serviceRepository,
+            IWatchedServiceRepository watchedServiceRepository)
         {
             _serviceRepository = serviceRepository;
+            _watchedServiceRepository = watchedServiceRepository;
 
             ShowInTaskbar = false;
 
@@ -39,7 +42,8 @@ namespace ServiceManager
             Top = desktopWorkingArea.Bottom - Height;
             Topmost = true;
 
-            ServicesData = new ObservableCollection<Service>(_serviceRepository.GetAllServices().Result);
+            //ServicesData = new ObservableCollection<Service>(_serviceRepository.GetAllServices().Result);
+            ServicesData = new ObservableCollection<Service>(_watchedServiceRepository.GetWatchedServices().Result);
 
             servicesList.ItemsSource = ServicesData;
         }

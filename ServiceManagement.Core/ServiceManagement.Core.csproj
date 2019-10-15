@@ -67,13 +67,9 @@
     <Compile Include="Interfaces\IToggleWindow.cs" />
     <Compile Include="Mappers\ServiceStatusMapper.cs" />
     <Compile Include="Mappers\ServiceStatusMapperException.cs" />
-    <Compile Include="Repositories\IWatchedServiceRepository.cs" />
-    <Compile Include="Repositories\WatchedServiceRepository.cs" />
     <Compile Include="Services\DescriptionService.cs" />
-    <Compile Include="Repositories\IServiceRepository.cs" />
     <Compile Include="Services\IDescriptionService.cs" />
     <Compile Include="Services\IStatusService.cs" />
-    <Compile Include="Repositories\ServiceRepository.cs" />
     <Compile Include="Services\StatusService.cs" />
     <Compile Include="Models\ScheduledItem.cs" />
     <Compile Include="Models\Service.cs" />

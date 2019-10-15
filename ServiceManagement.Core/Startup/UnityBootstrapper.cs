@@ -1,5 +1,4 @@
 ﻿using ServiceManagement.Core.Clients;
-using ServiceManagement.Core.Repositories;
 using ServiceManagement.Core.Services;
 using Unity;
 using Unity.Lifetime;
@@ -18,8 +17,7 @@ namespace ServiceManagement.Core.Startup
             Container = container;
 
             container.RegisterType<IServiceClient, ServiceClient>(new TransientLifetimeManager());
-            container.RegisterType<IServiceRepository, ServiceRepository>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IWatchedServiceRepository, WatchedServiceRepository>(new ContainerControlledLifetimeManager());
+
             container.RegisterType<IDescriptionService, DescriptionService>(new TransientLifetimeManager());
             container.RegisterType<IStatusService, StatusService>(new TransientLifetimeManager());
         }

@@ -1,8 +1,11 @@
 ﻿using ServiceManagement.Core.Startup;
 using ServiceManagement.Data.Database;
+using ServiceManagement.Data.Repositories;
+using ServiceManagement.Data.Repositories.Interfaces;
 using ServiceManagement.Tray;
 using System.Windows;
 using Unity;
+using Unity.Lifetime;
 
 namespace ServiceManager
 {
@@ -17,11 +20,13 @@ namespace ServiceManager
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            await DbInitialise.Initialise();
 
+            _container.RegisterType<IServiceRepository, ServiceRepository>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IWatchedServiceRepository, WatchedServiceRepository>(new ContainerControlledLifetimeManager());
             UnityBootstrapper.Register(_container);
 
             var window = _container.Resolve<MainWindow>();
-            await DbInitialise.Initialise();
             _trayIcon = Icon.Create(window);
         }
 

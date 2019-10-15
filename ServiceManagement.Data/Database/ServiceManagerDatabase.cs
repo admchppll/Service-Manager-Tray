@@ -6,11 +6,11 @@ namespace ServiceManagement.Data.Database
 {
     internal static class ServiceManagerDatabase
     {
-        private static readonly string _databaseName = "data.sqlite";
+        private const string DatabaseName = "data1.sqlite";
         private static readonly string _databaseFileLocation = GetExecutingDirectory();
 
-        internal static string Name => _databaseName;
-        internal static string FullPath => Path.Combine(_databaseFileLocation, _databaseName);
+        internal static string Name => DatabaseName;
+        internal static string FullPath => Path.Combine(_databaseFileLocation, DatabaseName);
         internal static string ConnectionString => $"Data Source={FullPath};Version=3;";
 
         private static string GetExecutingDirectory()

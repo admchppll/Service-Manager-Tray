@@ -16,7 +16,7 @@ namespace ServiceManagement.Data.Database
 
         private static void CreateDatabase()
         {
-            SQLiteConnection.CreateFile(ServiceManagerDatabase.FullPath);
+            //SQLiteConnection.CreateFile(ServiceManagerDatabase.FullPath);
         }
 
         private static void UpdateDatabase()

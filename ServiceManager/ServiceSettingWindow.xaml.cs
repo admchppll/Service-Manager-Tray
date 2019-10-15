@@ -1,5 +1,5 @@
 ﻿using ServiceManagement.Core.Models;
-using ServiceManagement.Core.Repositories;
+using ServiceManagement.Data.Repositories.Interfaces;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;

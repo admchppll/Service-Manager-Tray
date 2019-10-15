@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
 using ServiceManagement.Core.Models;
+using ServiceManagement.Data.Database;
 using ServiceManagement.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SQLite;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ServiceManagement.Data.Repositories
 {
@@ -23,9 +26,33 @@ namespace ServiceManagement.Data.Repositories
         /// Retrieves an <see cref="IEnumerable{T}"/> of watched Services.
         /// </summary>
         /// <returns>A list of services. Or an empty list if no file exists.</returns>
-        public IEnumerable<Service> GetWatchedServices()
+        public async Task<IEnumerable<Service>> GetWatchedServices()
         {
-            return DeserializeServicesFromFile(ConfigFileLocation());
+            var services = new List<Service>();
+            using (SQLiteConnection conn = new SQLiteConnection(ServiceManagerDatabase.ConnectionString))
+            {
+                await conn.OpenAsync();
+                //TODO: This is dirty, ugly and needs to go...
+                var sql = "SELECT Id, Name, Description, MachineName FROM WatchedService";
+
+                SQLiteCommand command = new SQLiteCommand(sql, conn);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        //TODO: This needs a constructor override for the reader input.
+                        services.Add(new Service()
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Description = reader.GetString(2),
+                            MachineName = reader.GetString(3)
+                        });
+                    }
+                }
+            }
+            return services;
         }
 
         /// <summary>

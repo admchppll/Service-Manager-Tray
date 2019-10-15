@@ -6,6 +6,15 @@ namespace ServiceManagement.Core.Models
     public class Service
     {
         /// <summary>
+        /// Id of a watch service
+        /// </summary>
+        [JsonIgnore]
+        public int Id
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>

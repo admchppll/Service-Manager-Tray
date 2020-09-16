@@ -1,11 +1,12 @@
 ﻿using ServiceManagement.Core.Mappers;
 using ServiceManagement.Core.Models;
-using ServiceManagement.Core.Services;
+using ServiceManagement.Services;
 using ServiceManagement.Data.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 using System.Threading.Tasks;
+using ServiceManagement.Services.Interfaces;
 
 namespace ServiceManagement.Data.Repositories
 {

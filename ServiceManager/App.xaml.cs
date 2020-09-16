@@ -1,7 +1,9 @@
-﻿using ServiceManagement.Core.Startup;
+﻿using ServiceManager.Startup;
 using ServiceManagement.Data.Database;
 using ServiceManagement.Data.Repositories;
 using ServiceManagement.Data.Repositories.Interfaces;
+using ServiceManagement.Services;
+using ServiceManagement.Services.Interfaces;
 using ServiceManagement.Tray;
 using System.Windows;
 using Unity;
@@ -24,6 +26,8 @@ namespace ServiceManager
 
             _container.RegisterType<IServiceRepository, ServiceRepository>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IWatchedServiceRepository, WatchedServiceRepository>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IDescriptionService, DescriptionService>(new TransientLifetimeManager());
+            _container.RegisterType<IStatusService, StatusService>(new TransientLifetimeManager());
             UnityBootstrapper.Register(_container);
 
             var window = _container.Resolve<MainWindow>();

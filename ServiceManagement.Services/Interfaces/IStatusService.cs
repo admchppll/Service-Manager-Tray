@@ -1,10 +1,11 @@
-﻿using ServiceManagement.Core.Models;
+﻿using ServiceManagement.Core.Clients;
+using ServiceManagement.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ServiceManagement.Services.Interfaces
 {
-    public interface IStatusService
+    public interface IStatusService : IServiceClient
     {
         /// <summary>
         /// Get the status of a service

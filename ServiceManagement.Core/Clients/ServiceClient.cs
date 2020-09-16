@@ -1,14 +1,8 @@
-﻿using ServiceManagement.Core.Mappers;
-using ServiceManagement.Core.Models;
-using ServiceManagement.Core.Services;
-using System;
-using System.Linq;
-using System.ServiceProcess;
-using System.Threading.Tasks;
+﻿using ServiceManagement.Core.Models;
 
 namespace ServiceManagement.Core.Clients
 {
-    public class ServiceClient : IServiceClient
+    public class ServiceClient // : IServiceClient
     {
         private const string AccessDeniedText = "Access is denied";
 
@@ -25,14 +19,14 @@ namespace ServiceManagement.Core.Clients
                 ServiceStatus.PausePending
             };
 
-        private readonly IStatusService _statusService;
+        //private readonly IStatusService _statusService;
 
-        public ServiceClient(IStatusService statusService)
+        public ServiceClient()//IStatusService statusService)
         {
-            _statusService = statusService;
+            //_statusService = statusService;
         }
 
-        public async Task<ServiceStatus> StartService(Service service)
+        /*public async Task<ServiceStatus> StartService(Service service)
         {
             return await StartService(service.MachineName);
         }
@@ -151,6 +145,6 @@ namespace ServiceManagement.Core.Clients
                 throw new InvalidOperationException($"Cannot toggle {serviceName} whilst there is already a pending action ({currentStatus})");
 
             return currentStatus;
-        }
+        }*/
     }
 }

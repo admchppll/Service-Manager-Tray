@@ -1,9 +1,10 @@
 ﻿using ServiceManagement.Core.Clients;
-using ServiceManagement.Core.Services;
+using ServiceManagement.Services;
+using ServiceManagement.Services.Interfaces;
 using Unity;
 using Unity.Lifetime;
 
-namespace ServiceManagement.Core.Startup
+namespace ServiceManager.Startup
 {
     public class UnityBootstrapper
     {
@@ -16,10 +17,7 @@ namespace ServiceManagement.Core.Startup
         {
             Container = container;
 
-            container.RegisterType<IServiceClient, ServiceClient>(new TransientLifetimeManager());
-
-            container.RegisterType<IDescriptionService, DescriptionService>(new TransientLifetimeManager());
-            container.RegisterType<IStatusService, StatusService>(new TransientLifetimeManager());
+            container.RegisterType<IServiceClient, StatusService>(new TransientLifetimeManager());
         }
 
         public static t Resolve<t>()

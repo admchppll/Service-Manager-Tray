@@ -98,6 +98,10 @@
       <Project>{70198946-bcb7-484f-9133-17718c19b27b}</Project>
       <Name>ServiceManagement.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiceManagement.Services\ServiceManagement.Services.csproj">
+      <Project>{ff025b39-96b6-4ad5-9ca3-8f054d197f19}</Project>
+      <Name>ServiceManagement.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

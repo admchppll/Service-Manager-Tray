@@ -1,6 +1,6 @@
 ﻿using ServiceManagement.Core.Interfaces;
 using ServiceManagement.Core.Models;
-using ServiceManagement.Core.Startup;
+using ServiceManager.Startup;
 using ServiceManagement.Data.Repositories.Interfaces;
 using System;
 using System.Collections.ObjectModel;
